@@ -2,12 +2,18 @@
 #define _GLOBAL_H_
 
 #include <string>
+#include <vector>
 using namespace std;
 
 class individual
 {
 public:
-    string set;
+    string equip_type;
+    vector<int> set_type;
+    //0=health 1=defense 2=attack 3=speed 4=ctitical 5=hit rate 6=destruction
+    //7=lifesteal 8=counter 9=resist 10=unity 11=rage 12=immunity
+    vector<int> belong;
+    int used;
     int atk;
     int atk_pctg;
     int hp;
@@ -28,7 +34,7 @@ extern int n_armor;
 extern int n_necklace;
 extern int n_ring;
 extern int n_boots;
-extern int n_final;
+extern int n_need;
 extern individual *weapon;
 extern individual *weapon;
 extern individual *helmet;
@@ -36,11 +42,13 @@ extern individual *armor;
 extern individual *necklace;
 extern individual *ring;
 extern individual *boots;
-extern individual *final;
+extern individual temp;
 
 void initialize();
 void input();
 void load();
 void calculate();
+void split(const string &s, vector<string> &sv, const char delim);
+void lorina(individual);
 
 #endif

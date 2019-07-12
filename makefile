@@ -17,9 +17,8 @@ equip: $(OBJS)
 	$(CC) $(CXXFLAGS) -c $<
 help: 
 	@echo ./equip initialize
-	@echo ./equip input weapon "set" atk atk_pctg hp hp_pctg def def_pctg crit_chance crit_dmg dual_atk_chance effectiveness effect_resist speed;
+	@echo ./equip input "equip_type" "set_type" atk atk_pctg hp hp_pctg def def_pctg crit_chance crit_dmg dual_atk_chance effectiveness effect_resist speed;
 test:
-	./equip initialize
 	./equip calculate
 clean: 
 	rm -rf $(OBJS)

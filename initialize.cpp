@@ -14,8 +14,8 @@ void initialize()
     n_necklace = 0;
     n_ring = 0;
     n_boots = 0;
-    fstream fs;
     string line;
+    fstream fs;
     fs.open("list.in", ios::in);
     while (getline(fs, line))
     {
@@ -32,6 +32,5 @@ void initialize()
         if (line[0] == 'b')
             n_boots++;
     }
-    n_final = n_weapon * n_helmet * n_armor * n_necklace * n_ring * n_boots;
     fs.close();
 }
