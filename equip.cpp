@@ -2,6 +2,7 @@
 
 #include <string.h> //strcmp
 #include <iostream>
+#include <time.h>
 
 int n_weapon;
 int n_helmet;
@@ -26,6 +27,10 @@ int main(int argc, char **argv)
     }
     if (strcmp(argv[1], "calculate") == 0)
     {
+        double start, end;
+        start = clock();
         calculate();
+        end = clock();
+        cout << "共 " << (end - start) / CLOCKS_PER_SEC << " 秒" << endl;
     }
 }

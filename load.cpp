@@ -52,49 +52,49 @@ void load()
     fs_r.open("./input/ring.in", ios::out);
     fs_b.open("./input/boots.in", ios::out);
     vector<string> word;
-    int w = 1, h = 1, a = 1, n = 1, r = 1, b = 1;
+    int w = 0, h = 0, a = 0, n = 0, r = 0, b = 0;
     while (getline(fs, line))
     {
         split(line, word, ' ');
         if (line[0] == 'w')
         {
             copy(weapon[w], word);
-            fs_w << w << " " << line << endl;
+            fs_w << w + 1 << " " << line << endl;
             w++;
             continue;
         }
         if (line[0] == 'h')
         {
             copy(helmet[h], word);
-            fs_h << h << " " << line << endl;
+            fs_h << h + 1 << " " << line << endl;
             h++;
             continue;
         }
         if (line[0] == 'a')
         {
             copy(armor[a], word);
-            fs_a << a << " " << line << endl;
+            fs_a << a + 1 << " " << line << endl;
             a++;
             continue;
         }
         if (line[0] == 'n')
         {
             copy(necklace[n], word);
-            fs_n << n << " " << line << endl;
+            fs_n << n + 1 << " " << line << endl;
             n++;
             continue;
         }
         if (line[0] == 'r')
         {
             copy(ring[r], word);
-            fs_r << r << " " << line << endl;
+            fs_r << r + 1 << " " << line << endl;
             r++;
             continue;
         }
         if (line[0] == 'b')
         {
             copy(boots[b], word);
-            fs_b << b << " " << line << endl;
+            fs_b << b + 1 << " " << line << endl;
             b++;
             continue;
         }

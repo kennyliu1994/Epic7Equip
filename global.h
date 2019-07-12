@@ -49,6 +49,6 @@ void input();
 void load();
 void calculate();
 void split(const string &s, vector<string> &sv, const char delim);
-void lorina(individual);
+void lorina(individual &);
 
 #endif

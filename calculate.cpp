@@ -7,13 +7,13 @@
 void copy(individual &temp, individual weapon, individual helmet, individual armor, individual necklace, individual ring, individual boots,
           int w, int h, int a, int n, int r, int b)
 {
-    temp.set_type.assign(13, 0);
+    /*temp.set_type.assign(13, 0);
     temp.set_type[weapon.set_type[0]]++;
     temp.set_type[helmet.set_type[0]]++;
     temp.set_type[armor.set_type[0]]++;
     temp.set_type[necklace.set_type[0]]++;
     temp.set_type[ring.set_type[0]]++;
-    temp.set_type[boots.set_type[0]]++;
+    temp.set_type[boots.set_type[0]]++;*/
     temp.belong.assign(6, 0);
     temp.belong[0] = w;
     temp.belong[1] = h;
@@ -21,18 +21,44 @@ void copy(individual &temp, individual weapon, individual helmet, individual arm
     temp.belong[3] = n;
     temp.belong[4] = r;
     temp.belong[5] = b;
-    temp.atk = weapon.atk + helmet.atk + armor.atk + necklace.atk + ring.atk + boots.atk;
-    temp.atk_pctg = weapon.atk_pctg + helmet.atk_pctg + armor.atk_pctg + necklace.atk_pctg + ring.atk_pctg + boots.atk_pctg;
-    temp.hp = weapon.hp + helmet.hp + armor.hp + necklace.hp + ring.hp + boots.hp;
-    temp.hp_pctg = weapon.hp_pctg + helmet.hp_pctg + armor.hp_pctg + necklace.hp_pctg + ring.hp_pctg + boots.hp_pctg;
-    temp.def = weapon.def + helmet.def + armor.def + necklace.def + ring.def + boots.def;
-    temp.def_pctg = weapon.def_pctg + helmet.def_pctg + armor.def_pctg + necklace.def_pctg + ring.def_pctg + boots.def_pctg;
-    temp.crit_chance = weapon.crit_chance + helmet.crit_chance + armor.crit_chance + necklace.crit_chance + ring.crit_chance + boots.crit_chance;
-    temp.crit_dmg = weapon.crit_dmg + helmet.crit_dmg + armor.crit_dmg + necklace.crit_dmg + ring.crit_dmg + boots.crit_dmg;
-    temp.dual_atk_chance = weapon.dual_atk_chance + helmet.dual_atk_chance + armor.dual_atk_chance + necklace.dual_atk_chance + ring.dual_atk_chance + boots.dual_atk_chance;
-    temp.effectiveness = weapon.effectiveness + helmet.effectiveness + armor.effectiveness + necklace.effectiveness + ring.effectiveness + boots.effectiveness;
-    temp.effect_resist = weapon.effect_resist + helmet.effect_resist + armor.effect_resist + necklace.effect_resist + ring.effect_resist + boots.effect_resist;
-    temp.speed = weapon.speed + helmet.speed + armor.speed + necklace.speed + ring.speed + boots.speed;
+    //0=生命 1=防禦 2=攻擊 3=速度 4=暴擊 5=命中 6=暴傷
+    //7=吸血 8=反擊 9=抵抗 10=夾擊 11=憤怒 12=免疫
+    if (temp.set_type[0] >= 2)
+        temp.hp_pctg += (temp.set_type[0] / 2 * 15);
+    if (temp.set_type[1] >= 2)
+        temp.def_pctg += (temp.set_type[1] / 2 * 15);
+    if (temp.set_type[2] >= 4)
+        temp.atk_pctg += (temp.set_type[2] / 4 * 35);
+    if (temp.set_type[3] >= 4)
+        temp.speed *= 1.25;
+    if (temp.set_type[4] >= 2)
+        temp.crit_chance += (temp.set_type[4] / 2 * 12);
+    if (temp.set_type[5] >= 2)
+        temp.effectiveness += (temp.set_type[5] / 2 * 20);
+    if (temp.set_type[6] >= 4)
+        temp.crit_dmg += (temp.set_type[6] / 4 * 40);
+    if (temp.set_type[9] >= 2)
+        temp.effect_resist += (temp.set_type[9] / 2 * 20);
+    if (temp.set_type[10] >= 2)
+        temp.dual_atk_chance += (temp.set_type[10] / 2 * 4);
+    temp.atk_pctg += weapon.atk_pctg + helmet.atk_pctg + armor.atk_pctg + necklace.atk_pctg + ring.atk_pctg + boots.atk_pctg;
+    temp.atk *= 0.01 * temp.atk_pctg + 1;
+    temp.atk += weapon.atk + helmet.atk + armor.atk + necklace.atk + ring.atk + boots.atk;
+
+    temp.hp_pctg += weapon.hp_pctg + helmet.hp_pctg + armor.hp_pctg + necklace.hp_pctg + ring.hp_pctg + boots.hp_pctg;
+    temp.hp *= 0.01 * temp.hp_pctg + 1;
+    temp.hp += weapon.hp + helmet.hp + armor.hp + necklace.hp + ring.hp + boots.hp;
+
+    temp.def_pctg += weapon.def_pctg + helmet.def_pctg + armor.def_pctg + necklace.def_pctg + ring.def_pctg + boots.def_pctg;
+    temp.def *= 0.01 * temp.def_pctg + 1;
+    temp.def += weapon.def + helmet.def + armor.def + necklace.def + ring.def + boots.def;
+
+    temp.crit_chance += weapon.crit_chance + helmet.crit_chance + armor.crit_chance + necklace.crit_chance + ring.crit_chance + boots.crit_chance;
+    temp.crit_dmg += weapon.crit_dmg + helmet.crit_dmg + armor.crit_dmg + necklace.crit_dmg + ring.crit_dmg + boots.crit_dmg;
+    temp.dual_atk_chance += weapon.dual_atk_chance + helmet.dual_atk_chance + armor.dual_atk_chance + necklace.dual_atk_chance + ring.dual_atk_chance + boots.dual_atk_chance;
+    temp.effectiveness += weapon.effectiveness + helmet.effectiveness + armor.effectiveness + necklace.effectiveness + ring.effectiveness + boots.effectiveness;
+    temp.effect_resist += weapon.effect_resist + helmet.effect_resist + armor.effect_resist + necklace.effect_resist + ring.effect_resist + boots.effect_resist;
+    temp.speed += weapon.speed + helmet.speed + armor.speed + necklace.speed + ring.speed + boots.speed;
 }
 
 bool cmp_speed(individual const &a, individual const &b)
@@ -42,12 +68,12 @@ bool cmp_speed(individual const &a, individual const &b)
 
 bool cmp_atk(individual const &a, individual const &b)
 {
-    return a.atk_pctg > b.atk_pctg;
+    return a.atk > b.atk;
 };
 
 bool cmp_hp(individual const &a, individual const &b)
 {
-    return a.hp_pctg > b.hp_pctg;
+    return a.hp > b.hp;
 };
 
 bool cmp_eff(individual const &a, individual const &b)
@@ -101,21 +127,10 @@ void calculate()
                             //if (temp.set_type[3] >= 4 && temp.speed >= (200 - 112 * 1.25)) //速度伊賽
                             //if (temp.set_type[3] >= 4) //2速
                             //if (temp.set_type[2] >= 4 && temp.crit_chance >= 85 - 23) //攻擊暗刺
-                            if (temp.set_type[2] >= 4 && temp.crit_chance >= 85 - 23) //攻擊lorina
+                            if (temp.set_type[2] >= 4 && temp.crit_chance >= 85) //攻擊lorina
                             {
+                                lorina(temp);
                                 copy(temp, weapon[w], helmet[h], armor[a], necklace[n], ring[r], boots[b], w, h, a, n, r, b);
-                                if (temp.set_type[0] >= 2) //0=生命 1=防禦 2=攻擊 3=速度 4=暴擊 5=命中 6=暴傷
-                                    temp.hp_pctg += (temp.set_type[0] / 2 * 15);
-                                if (temp.set_type[1] >= 2)
-                                    temp.def_pctg += (temp.set_type[1] / 2 * 15);
-                                if (temp.set_type[2] >= 4)
-                                    temp.atk_pctg += (temp.set_type[2] / 4 * 35);
-                                if (temp.set_type[4] >= 2)
-                                    temp.crit_chance += (temp.set_type[4] / 2 * 12);
-                                if (temp.set_type[5] >= 2)
-                                    temp.effectiveness += (temp.set_type[5] / 2 * 20);
-                                if (temp.set_type[6] >= 4)
-                                    temp.crit_dmg += (temp.set_type[6] / 4 * 40);
                                 comp.push_back(temp);
                                 f++;
                                 if (f > n_need)
@@ -162,10 +177,9 @@ void calculate()
         {
             fs << "0" << comp[n].belong[5] + 1;
         }
-        fs << " " << comp[n].atk << " " << comp[n].atk_pctg << " " << comp[n].hp << " " << comp[n].hp_pctg
-           << " " << comp[n].def << " " << comp[n].def_pctg << " " << comp[n].crit_chance
-           << " " << comp[n].crit_dmg << " " << comp[n].dual_atk_chance << " " << comp[n].effectiveness
-           << " " << comp[n].effect_resist << " " << comp[n].speed << endl;
+        fs << " atk = " << comp[n].atk << " hp = " << comp[n].hp << " def = " << comp[n].def << " crit = " << comp[n].crit_chance
+           << " crit_dmg = " << comp[n].crit_dmg << " dual = " << comp[n].dual_atk_chance << " effect = " << comp[n].effectiveness
+           << " resist = " << comp[n].effect_resist << " speed = " << comp[n].speed << endl;
     }
     fs.close();
 }
