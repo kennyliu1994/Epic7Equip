@@ -10,7 +10,7 @@ int n_armor;
 int n_necklace;
 int n_ring;
 int n_boots;
-int n_need = 40;
+int n_need = 3;
 individual *weapon;
 individual *helmet;
 individual *armor;

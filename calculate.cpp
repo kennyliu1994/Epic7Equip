@@ -116,8 +116,8 @@ void calculate()
                             temp.crit_chance = weapon[w].crit_chance + helmet[h].crit_chance + armor[a].crit_chance + necklace[n].crit_chance + ring[r].crit_chance + boots[b].crit_chance;
                             temp.speed = weapon[w].speed + helmet[h].speed + armor[a].speed + necklace[n].speed + ring[r].speed + boots[b].speed;
 
-                            //if (temp.set_type[3] >= 4) //最快速度
-                            //if (temp.set_type[2] >= 4 && temp.crit_chance >= 85 - 23) //攻擊水刺
+                            if (temp.set_type[3] >= 4) //最快速度
+                            //if (temp.set_type[2] >= 4 && temp.crit_chance >= 80) //攻擊水刺
                             //if (temp.set_type[7] >= 4 && temp.crit_chance >= 85-30-15)//吸血水龍
                             //if (temp.set_type[3] >= 4 && temp.crit_chance >= 85 - 23) //速度木刺
                             //if (temp.set_type[3] >= 4 && temp.speed >= (150 - 88 * 1.25)) //速度150水奶
@@ -127,16 +127,28 @@ void calculate()
                             //if (temp.set_type[3] >= 4 && temp.speed >= (200 - 112 * 1.25)) //速度伊賽
                             //if (temp.set_type[3] >= 4) //2速
                             //if (temp.set_type[2] >= 4 && temp.crit_chance >= 85 - 23) //攻擊暗刺
-                            if (temp.set_type[2] >= 4 && temp.crit_chance >= 85) //攻擊lorina
+                            //if (temp.set_type[2] >= 4 && temp.crit_chance >= 85) //攻擊lorina
                             {
-                                lorina(temp);
+                                Auxiliary_Lots(temp);
+                                //Sez(temp);
+                                //Luna(temp);
+                                //Vildred(temp);
+                                //Angelica(temp);
+                                //Tamarinne(temp);
+                                //Dizzy(temp);
+                                //Violet(temp);
+                                //Iseria(temp);
+                                //Righteous_Thief_Roozid(temp);
+                                //Arbiter_Vildred(temp);
+                                //Lorina(temp);
+
                                 copy(temp, weapon[w], helmet[h], armor[a], necklace[n], ring[r], boots[b], w, h, a, n, r, b);
                                 comp.push_back(temp);
                                 f++;
                                 if (f > n_need)
                                 {
-                                    //sort(comp.begin(), comp.end(), cmp_speed); //速度
-                                    sort(comp.begin(), comp.end(), cmp_atk); //攻擊%
+                                    sort(comp.begin(), comp.end(), cmp_speed); //速度
+                                    //sort(comp.begin(), comp.end(), cmp_atk); //攻擊%
                                     //sort(comp.begin(), comp.end(), cmp_hp); //生命%
                                     //sort(comp.begin(), comp.end(), cmp_eff); //命中
                                     comp.pop_back();

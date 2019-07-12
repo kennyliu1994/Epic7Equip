@@ -13,7 +13,7 @@ public:
     //0=health 1=defense 2=attack 3=speed 4=ctitical 5=hit rate 6=destruction
     //7=lifesteal 8=counter 9=resist 10=unity 11=rage 12=immunity
     vector<int> belong;
-    int used;
+    //int used;
     int atk;
     int atk_pctg;
     int hp;
@@ -49,6 +49,18 @@ void input();
 void load();
 void calculate();
 void split(const string &s, vector<string> &sv, const char delim);
-void lorina(individual &);
+
+void Lorina(individual &temp);
+void Sez(individual &temp);
+void Angelica(individual &temp);
+void Auxiliary_Lots(individual &temp);
+void Luna(individual &temp);
+void Vildred(individual &temp);
+void Tamarinne(individual &temp);
+void Dizzy(individual &temp);
+void Violet(individual &temp);
+void Iseria(individual &temp);
+void Arbiter_Vildred(individual &temp);
+void Righteous_Thief_Roozid(individual &temp);
 
 #endif
