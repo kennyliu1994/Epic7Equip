@@ -10,9 +10,10 @@ void input()
     fstream fs;
     fs.open("list.in", ios::app);
     int count = 0;
-    
+
     cout << "部位 = " << endl;
     cin >> input.equip_type;
+    cout << "0=生命 1=防禦 2=攻擊 3=速度 4=暴擊 5=命中 6=暴傷 7=吸血 8=反擊 9=抵抗 10=夾擊 11=憤怒 12=免疫" << endl;
     cout << "set_type = " << endl;
     cin >> input.set_type[0];
     cout << "攻擊 = " << endl;
@@ -64,7 +65,10 @@ void input()
     if (input.speed != 0)
         count++;
     if (count != 5)
+    {
         cout << "input wrong!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
+        exit(1);
+    }
     fs << input.equip_type << " " << input.set_type[0]
        << " " << input.atk << " " << input.atk_pctg << " " << input.hp << " " << input.hp_pctg
        << " " << input.def << " " << input.def_pctg << " " << input.crit_chance

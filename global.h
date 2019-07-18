@@ -28,6 +28,7 @@ public:
     int speed;
 };
 
+//extern double total_progress;
 extern int n_weapon;
 extern int n_helmet;
 extern int n_armor;
@@ -62,5 +63,7 @@ void Violet(individual &temp);
 void Iseria(individual &temp);
 void Arbiter_Vildred(individual &temp);
 void Righteous_Thief_Roozid(individual &temp);
+void Bellona(individual &temp);
+void Jecht(individual &temp);
 
 #endif

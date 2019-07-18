@@ -4,13 +4,14 @@
 #include <iostream>
 #include <time.h>
 
+//double total_progress;
 int n_weapon;
 int n_helmet;
 int n_armor;
 int n_necklace;
 int n_ring;
 int n_boots;
-int n_need = 40;
+int n_need;
 individual *weapon;
 individual *helmet;
 individual *armor;

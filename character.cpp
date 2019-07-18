@@ -194,3 +194,35 @@ void Righteous_Thief_Roozid(individual &temp)
     temp.effect_resist = 0;
     temp.speed = 106;
 }
+
+void Bellona(individual &temp)
+{
+    temp.atk = 1003;
+    temp.atk_pctg = 0;
+    temp.hp = 5704;
+    temp.hp_pctg = 0;
+    temp.def = 585;
+    temp.def_pctg = 0;
+    temp.crit_chance = 15;
+    temp.crit_dmg = 150;
+    temp.dual_atk_chance = 5;
+    temp.effectiveness = 30;
+    temp.effect_resist = 0;
+    temp.speed = 115;
+}
+
+void Jecht(individual &temp)
+{
+    temp.atk = 796;
+    temp.atk_pctg = 0;
+    temp.hp = 3925;
+    temp.hp_pctg = 0;
+    temp.def = 599;
+    temp.def_pctg = 0;
+    temp.crit_chance = 15;
+    temp.crit_dmg = 150;
+    temp.dual_atk_chance = 5;
+    temp.effectiveness = 0;
+    temp.effect_resist = 0;
+    temp.speed = 104;
+}

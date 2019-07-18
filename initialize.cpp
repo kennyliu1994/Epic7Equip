@@ -32,5 +32,6 @@ void initialize()
         if (line[0] == 'b')
             n_boots++;
     }
+    //total_progress = n_weapon * n_helmet * n_armor * n_necklace * n_ring * n_boots;
     fs.close();
 }
