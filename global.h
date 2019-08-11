@@ -65,5 +65,8 @@ void Arbiter_Vildred(individual &temp);
 void Righteous_Thief_Roozid(individual &temp);
 void Bellona(individual &temp);
 void Jecht(individual &temp);
+void Watcher_Schuri(individual &temp);
+void Seaside_Bellona(individual &temp);
+void Angelic_Montmorancy(individual &temp);
 
 #endif

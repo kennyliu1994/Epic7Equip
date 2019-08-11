@@ -226,3 +226,51 @@ void Jecht(individual &temp)
     temp.effect_resist = 0;
     temp.speed = 104;
 }
+
+void Watcher_Schuri(individual &temp)
+{
+    temp.atk = 970;
+    temp.hp = 5935;
+    temp.speed = 106;
+    temp.def = 557;
+    temp.crit_chance = 27;
+    temp.crit_dmg = 150;
+    temp.dual_atk_chance = 5;
+    temp.effectiveness = 0;
+    temp.effect_resist = 0;
+    temp.atk_pctg = 0;
+    temp.hp_pctg = 0;
+    temp.def_pctg = 0;
+}
+
+void Seaside_Bellona(individual &temp)
+{
+    temp.atk = 1182;
+    temp.hp = 5299;
+    temp.speed = 114;
+    temp.def = 571;
+    temp.crit_chance = 15;
+    temp.crit_dmg = 150;
+    temp.dual_atk_chance = 5;
+    temp.effectiveness = 18;
+    temp.effect_resist = 0;
+    temp.atk_pctg = 0;
+    temp.hp_pctg = 0;
+    temp.def_pctg = 0;
+}
+
+void Angelic_Montmorancy(individual &temp)
+{
+    temp.atk = 540;
+    temp.hp = 4900;
+    temp.speed = 94;
+    temp.def = 729;
+    temp.crit_chance = 15;
+    temp.crit_dmg = 150;
+    temp.dual_atk_chance = 5;
+    temp.effectiveness = 0;
+    temp.effect_resist = 0;
+    temp.atk_pctg = 0;
+    temp.hp_pctg = 0;
+    temp.def_pctg = 0;
+}

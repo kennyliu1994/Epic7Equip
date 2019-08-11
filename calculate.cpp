@@ -82,9 +82,24 @@ bool cmp_eff(individual const &a, individual const &b)
     return a.effectiveness > b.effectiveness;
 };
 
+bool cmp_hp_eff(individual const &a, individual const &b)
+{
+    return a.effectiveness * a.hp > b.effectiveness * b.hp;
+};
+
+bool cmp_hp_res(individual const &a, individual const &b)
+{
+    return a.effect_resist * a.hp > b.effect_resist * b.hp;
+};
+
 bool cmp_atk_dmg(individual const &a, individual const &b)
 {
     return a.atk * a.crit_dmg > b.atk * b.crit_dmg;
+};
+
+bool cmp_atk_dmg_hp(individual const &a, individual const &b)
+{
+    return a.atk * a.crit_dmg * a.hp > b.atk * b.crit_dmg * b.hp;
 };
 
 bool cmp_dmg(individual const &a, individual const &b)
@@ -126,40 +141,51 @@ void calculate()
                             temp.set_type[necklace[n].set_type[0]]++;
                             temp.set_type[ring[r].set_type[0]]++;
                             temp.set_type[boots[b].set_type[0]]++;
+
                             temp.crit_chance = weapon[w].crit_chance + helmet[h].crit_chance + armor[a].crit_chance + necklace[n].crit_chance + ring[r].crit_chance + boots[b].crit_chance;
                             temp.speed = weapon[w].speed + helmet[h].speed + armor[a].speed + necklace[n].speed + ring[r].speed + boots[b].speed;
+                            if (temp.set_type[4] >= 2)
+                                temp.crit_chance += (temp.set_type[4] / 2 * 12);
+                            //0=生命 1=防禦 2=攻擊 3=速度 4=暴擊 5=命中 6=暴傷
+                            //7=吸血 8=反擊 9=抵抗 10=夾擊 11=憤怒 12=免疫
 
                             //if (temp.set_type[3] >= 4) //最快速度
-                            //if (temp.set_type[2] >= 4 && temp.crit_chance >= 85 - 23) //攻擊水刺
+                            //if (temp.set_type[2] >= 4 && temp.crit_chance >= 90 - 27) //攻擊光槍
                             //if (temp.set_type[7] >= 4 && temp.crit_chance >= 85 - 30 - 15) //吸血水龍
-                            //if (temp.set_type[2] >= 4 && temp.crit_chance >= 85 - 23) //攻擊暗刺
-                            //if (temp.set_type[2] >= 4 && temp.crit_chance >= 85 - 23) //攻擊lorina
-                            //if (temp.set_type[3] >= 4 && temp.speed >= (200 - 115 * 1.25)) //速度蒂姬
+                            //if (temp.set_type[3] >= 4 && temp.crit_chance >= 90 - 15) //速度水扇
+                            //if (temp.set_type[8] >= 4 && temp.speed >= (200 - 115)) //反擊蒂姬
                             //if (temp.set_type[3] >= 4 && temp.speed >= (202 - 112 * 1.25)) //速度伊賽
                             //if (temp.set_type[3] >= 4 && temp.speed >= (182 - 106 * 1.25)) //速度歌姬
-                            //if (temp.set_type[3] >= 4 && temp.speed >= (150 - 88 * 1.25)) //速度水奶
-                            //if (temp.set_type[7] >= 4 && temp.crit_chance >= 85 - 23) //吸血反擊
-                            //if (temp.set_type[3] >= 4 && temp.crit_chance >= 85 - 23) //速度木刺
+                            //if (temp.set_type[3] >= 4 && temp.speed >= (146 - 88 * 1.25)) //速度水奶
+                            //if (temp.set_type[3] >= 4 && temp.speed >= (180 - 94 * 1.25)) //速度小水奶
+                            //if (temp.set_type[2] >= 4 && temp.crit_chance >= 85 - 23) //攻擊lorina
+                            //if (temp.set_type[7] >= 4 && temp.crit_chance >= 80 - 23) //吸血反賊
                             //if (temp.set_type[3] >= 4) //2速
                             //if (temp.set_type[3] >= 4) //3速
 
                             //if (temp.set_type[3] >= 4 && temp.crit_chance >= 85 - 23) //速度暴傷木扇
+                            //if (temp.set_type[2] >= 4 && temp.crit_chance >= 85 - 23) //攻擊水刺
+                            //if (temp.set_type[2] >= 4 && temp.crit_chance >= 85 - 23) //攻擊暗刺
+                            //if (temp.set_type[3] >= 4 && temp.crit_chance >= 85 - 23) //速度木刺
                             {
-                                //Auxiliary_Lots(temp); //5/57(n_need/sec)
+                                //Auxiliary_Lots(temp); //5/92(n_need/sec)
+                                //Watcher_Schuri(temp); //30/12(n_need/sec)
+                                //Luna(temp); //30/8
+                                //Seaside_Bellona(temp); //30/43
+                                //Dizzy(temp); //30/3
+                                //Iseria(temp); //30/15
+                                //Tamarinne(temp); //30/35
+                                //Angelica(temp); //30/28
+                                //Angelic_Montmorancy(temp); //30/28
+                                //Lorina(temp); //30/1
+                                //Violet(temp); //30/0
+
+                                //Jecht(temp); //30/0.67
+                                //Bellona(temp); //30/1.43
                                 //Sez(temp); //30/7.71
-                                //Luna(temp); //30/3.89
                                 //Arbiter_Vildred(temp); //30/3.20
-                                //Lorina(temp); //30/1.67
-                                //Dizzy(temp); //30/15.67
-                                //Iseria(temp); //30/1.34
-                                //Tamarinne(temp); //30/8.09
-                                //Angelica(temp); //30/6.93
-                                //Violet(temp); //30/0.20
                                 //Vildred(temp); //30/1.37
                                 //Righteous_Thief_Roozid(temp); //30/1.76
-                                //Jecht(temp); //30/0.67
-
-                                //Bellona(temp); //30/1.43
 
                                 copy(temp, weapon[w], helmet[h], armor[a], necklace[n], ring[r], boots[b], w, h, a, n, r, b);
                                 comp.push_back(temp);
@@ -170,7 +196,10 @@ void calculate()
                                     //sort(comp.begin(), comp.end(), cmp_atk); //攻擊
                                     //sort(comp.begin(), comp.end(), cmp_hp); //生命
                                     //sort(comp.begin(), comp.end(), cmp_eff); //命中
+                                    //sort(comp.begin(), comp.end(), cmp_hp_eff); //生命*命中
+                                    //sort(comp.begin(), comp.end(), cmp_hp_res); //生命*抵抗
                                     //sort(comp.begin(), comp.end(), cmp_atk_dmg); //攻擊*暴傷
+                                    //sort(comp.begin(), comp.end(), cmp_atk_dmg_hp); //攻擊*暴傷*生命
                                     //sort(comp.begin(), comp.end(), cmp_dmg); //暴傷
                                     comp.pop_back();
                                     f--;
