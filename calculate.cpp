@@ -160,13 +160,13 @@ void calculate()
                             //if (temp.set_type[3] >= 4 && temp.speed >= (180 - 94 * 1.25)) //速度小水奶
                             //if (temp.set_type[2] >= 4 && temp.crit_chance >= 85 - 23) //攻擊lorina
                             //if (temp.set_type[7] >= 4 && temp.crit_chance >= 80 - 23) //吸血反賊
+                            if (temp.set_type[3] >= 4 && temp.crit_chance >= 85 - 23) //速度木刺
                             //if (temp.set_type[3] >= 4) //2速
                             //if (temp.set_type[3] >= 4) //3速
-
-                            //if (temp.set_type[3] >= 4 && temp.crit_chance >= 85 - 23) //速度暴傷木扇
+                            
                             //if (temp.set_type[2] >= 4 && temp.crit_chance >= 85 - 23) //攻擊水刺
-                            //if (temp.set_type[2] >= 4 && temp.crit_chance >= 85 - 23) //攻擊暗刺
-                            //if (temp.set_type[3] >= 4 && temp.crit_chance >= 85 - 23) //速度木刺
+                            //if (temp.set_type[3] >= 4 && temp.crit_chance >= 85 - 23) //攻擊暗刺
+                            //if (temp.set_type[3] >= 4 && temp.crit_chance >= 85 - 23) //速度暴傷木扇
                             {
                                 //Auxiliary_Lots(temp); //5/92(n_need/sec)
                                 //Watcher_Schuri(temp); //30/12(n_need/sec)
@@ -179,12 +179,12 @@ void calculate()
                                 //Angelic_Montmorancy(temp); //30/28
                                 //Lorina(temp); //30/1
                                 //Violet(temp); //30/0
+                                Vildred(temp); //30/1.37
 
                                 //Jecht(temp); //30/0.67
-                                //Bellona(temp); //30/1.43
+                                //Arbiter_Vildred(temp); //30/3
                                 //Sez(temp); //30/7.71
-                                //Arbiter_Vildred(temp); //30/3.20
-                                //Vildred(temp); //30/1.37
+                                //Bellona(temp); //30/3
                                 //Righteous_Thief_Roozid(temp); //30/1.76
 
                                 copy(temp, weapon[w], helmet[h], armor[a], necklace[n], ring[r], boots[b], w, h, a, n, r, b);
@@ -198,7 +198,7 @@ void calculate()
                                     //sort(comp.begin(), comp.end(), cmp_eff); //命中
                                     //sort(comp.begin(), comp.end(), cmp_hp_eff); //生命*命中
                                     //sort(comp.begin(), comp.end(), cmp_hp_res); //生命*抵抗
-                                    //sort(comp.begin(), comp.end(), cmp_atk_dmg); //攻擊*暴傷
+                                    sort(comp.begin(), comp.end(), cmp_atk_dmg); //攻擊*暴傷
                                     //sort(comp.begin(), comp.end(), cmp_atk_dmg_hp); //攻擊*暴傷*生命
                                     //sort(comp.begin(), comp.end(), cmp_dmg); //暴傷
                                     comp.pop_back();
