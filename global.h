@@ -13,7 +13,8 @@ public:
     //0=health 1=defense 2=attack 3=speed 4=ctitical 5=hit rate 6=destruction
     //7=lifesteal 8=counter 9=resist 10=unity 11=rage 12=immunity
     vector<int> belong;
-    //int used;
+    int used;
+    int index;
     int atk;
     int atk_pctg;
     int hp;
@@ -37,19 +38,18 @@ extern int n_ring;
 extern int n_boots;
 extern int n_need;
 extern individual *weapon;
-extern individual *weapon;
 extern individual *helmet;
 extern individual *armor;
 extern individual *necklace;
 extern individual *ring;
 extern individual *boots;
+extern individual hero;
 extern individual temp;
 
-void initialize();
 void input();
 void load();
 void calculate();
-void split(const string &s, vector<string> &sv, const char delim);
+//void split(const string &s, vector<string> &sv, const char delim);
 
 void Lorina(individual &temp);
 void Sez(individual &temp);

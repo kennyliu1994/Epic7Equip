@@ -18,7 +18,8 @@ individual *armor;
 individual *necklace;
 individual *ring;
 individual *boots;
-individual temp; //store for compare
+individual hero; //角色初始數值
+individual temp;      //store for compare
 
 int main(int argc, char **argv)
 {
