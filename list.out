@@ -1,10 +1,5 @@
-24,05,05,20,10,21 atk = 3552 hp = 7936 def = 756 crit = 87 crit_dmg = 277 dual = 5 effect = 28 resist = 0 speed = 145
-24,05,05,10,10,21 atk = 3396 hp = 7987 def = 756 crit = 87 crit_dmg = 287 dual = 5 effect = 21 resist = 0 speed = 145
-24,21,05,20,10,21 atk = 3719 hp = 7786 def = 777 crit = 91 crit_dmg = 262 dual = 5 effect = 19 resist = 0 speed = 145
-24,21,05,13,10,21 atk = 3706 hp = 7631 def = 777 crit = 88 crit_dmg = 262 dual = 5 effect = 23 resist = 0 speed = 145
-24,21,05,10,10,21 atk = 3563 hp = 7837 def = 777 crit = 91 crit_dmg = 272 dual = 5 effect = 12 resist = 0 speed = 145
-00,21,05,20,10,21 atk = 3693 hp = 8248 def = 777 crit = 87 crit_dmg = 262 dual = 5 effect = 19 resist = 0 speed = 145
-00,21,05,10,10,21 atk = 3537 hp = 8299 def = 777 crit = 87 crit_dmg = 272 dual = 5 effect = 12 resist = 0 speed = 145
-14,21,05,20,10,21 atk = 3417 hp = 7323 def = 777 crit = 87 crit_dmg = 274 dual = 5 effect = 23 resist = 0 speed = 145
-24,17,05,20,10,21 atk = 3571 hp = 7486 def = 730 crit = 94 crit_dmg = 262 dual = 5 effect = 19 resist = 17 speed = 145
-24,17,05,13,10,21 atk = 3558 hp = 7331 def = 730 crit = 91 crit_dmg = 262 dual = 5 effect = 23 resist = 17 speed = 145
+00,01,10,11,02,11 atk = 2439 hp = 8990 def = 870 crit = 15 crit_dmg = 215 dual = 5 effect = 40 resist = 55 speed = 241
+00,01,10,11,02,13 atk = 2543 hp = 9056 def = 860 crit = 15 crit_dmg = 215 dual = 5 effect = 29 resist = 51 speed = 241
+00,01,10,11,02,19 atk = 2557 hp = 8990 def = 860 crit = 15 crit_dmg = 215 dual = 5 effect = 29 resist = 47 speed = 241
+00,02,10,11,02,11 atk = 2523 hp = 9225 def = 870 crit = 15 crit_dmg = 215 dual = 5 effect = 35 resist = 38 speed = 240
+00,02,10,11,02,13 atk = 2626 hp = 9291 def = 860 crit = 15 crit_dmg = 215 dual = 5 effect = 24 resist = 34 speed = 240

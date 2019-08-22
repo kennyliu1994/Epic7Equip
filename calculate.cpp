@@ -17,6 +17,7 @@ void copy(individual &temp, individual weapon, individual helmet, individual arm
     temp.belong[5] = b;
     //0=生命 1=防禦 2=攻擊 3=速度 4=暴擊 5=命中 6=暴傷
     //7=吸血 8=反擊 9=抵抗 10=夾擊 11=憤怒 12=免疫
+
     temp.atk_pctg += weapon.atk_pctg + helmet.atk_pctg + armor.atk_pctg + necklace.atk_pctg + ring.atk_pctg + boots.atk_pctg;
     temp.atk *= 0.01 * temp.atk_pctg + 1;
     temp.atk += weapon.atk + helmet.atk + armor.atk + necklace.atk + ring.atk + boots.atk;
@@ -82,13 +83,17 @@ bool cmp_dmg(individual const &a, individual const &b)
     return a.crit_dmg > b.crit_dmg;
 };
 
+bool cmp_speed_eff(individual const &a, individual const &b)
+{
+    return a.speed * a.effectiveness > b.speed * b.effectiveness;
+};
+
 void calculate()
 {
     vector<individual> comp;
     comp.clear();
-    load();
     int f = 0;
-    n_need = 10;
+    n_need = 5;
     for (int w = 0; w < n_weapon; w++)
     {
         for (int h = 0; h < n_helmet; h++)
@@ -113,7 +118,7 @@ void calculate()
                             //Watcher_Schuri(hero); //30/12(n_need/sec)
                             //Luna(hero); //30/8
                             //Seaside_Bellona(hero); //30/43
-                            //Dizzy(hero); //30/3
+                            Dizzy(hero); //132/5
                             //Iseria(hero); //30/15
                             //Tamarinne(hero); //30/35
                             //Angelica(hero); //30/28
@@ -122,7 +127,7 @@ void calculate()
                             //Violet(hero); //30/0
                             //Vildred(hero); //30/1.37
                             //Jecht(hero); //30/0.67
-                            Arbiter_Vildred(hero); //30/3
+                            // Arbiter_Vildred(hero); //30/3
                             //Sez(hero); //30/7.71
                             //Bellona(hero); //30/3
                             //Righteous_Thief_Roozid(hero); //30/1.76
@@ -146,13 +151,14 @@ void calculate()
                             if (temp.set_type[10] >= 2)
                                 hero.dual_atk_chance += (temp.set_type[10] / 2 * 4);
 
-                            //hero.speed += weapon[w].speed + helmet[h].speed + armor[a].speed + necklace[n].speed + ring[r].speed + boots[b].speed;
-                            hero.crit_chance += weapon[w].crit_chance + helmet[h].crit_chance + armor[a].crit_chance + necklace[n].crit_chance + ring[r].crit_chance + boots[b].crit_chance;
+                            hero.speed += weapon[w].speed + helmet[h].speed + armor[a].speed + necklace[n].speed + ring[r].speed + boots[b].speed;
+                            //hero.crit_chance += weapon[w].crit_chance + helmet[h].crit_chance + armor[a].crit_chance + necklace[n].crit_chance + ring[r].crit_chance + boots[b].crit_chance;
 
                             //0=生命 1=防禦 2=攻擊 3=速度 4=暴擊 5=命中 6=暴傷
                             //7=吸血 8=反擊 9=抵抗 10=夾擊 11=憤怒 12=免疫
 
-                            //if (temp.set_type[3] >= 4 && hero.speed >= 200) //1速
+                            if (temp.set_type[3] >= 4 && hero.speed >= 200) //1速命中蒂姬
+
                             //if (temp.set_type[2] >= 4 && temp.crit_chance >= 90 - 27) //攻擊光槍
                             //if (temp.set_type[7] >= 4 && temp.crit_chance >= 85 - 30 - 15) //吸血水龍
                             //if (temp.set_type[3] >= 4 && temp.crit_chance >= 90 - 15) //速度水扇
@@ -166,9 +172,8 @@ void calculate()
                             //if (temp.set_type[3] >= 4 && temp.crit_chance >= 85 - 23) //速度木刺
                             //if (temp.set_type[3] >= 4) //2速
                             //if (temp.set_type[3] >= 4) //3速
-
                             //if (temp.set_type[2] >= 4 && temp.crit_chance >= 85 - 23) //攻擊水刺
-                            if (temp.set_type[3] >= 4 && hero.crit_chance >= 85) //攻擊暗刺
+                            // if (temp.set_type[3] >= 4 && hero.crit_chance >= 85) //攻擊暗刺
                             //if (temp.set_type[3] >= 4 && temp.crit_chance >= 85 - 23) //速度暴傷木扇
                             {
                                 copy(hero, weapon[w], helmet[h], armor[a], necklace[n], ring[r], boots[b], w, h, a, n, r, b);
@@ -176,13 +181,14 @@ void calculate()
                                 f++;
                                 if (f > n_need)
                                 {
-                                    //sort(comp.begin(), comp.end(), cmp_speed); //速度
+                                    sort(comp.begin(), comp.end(), cmp_speed); //速度
+                                    // sort(comp.begin(), comp.end(), cmp_speed_eff); //速度命中
                                     //sort(comp.begin(), comp.end(), cmp_atk); //攻擊
                                     //sort(comp.begin(), comp.end(), cmp_hp); //生命
                                     //sort(comp.begin(), comp.end(), cmp_eff); //命中
                                     //sort(comp.begin(), comp.end(), cmp_hp_eff); //生命*命中
                                     //sort(comp.begin(), comp.end(), cmp_hp_res); //生命*抵抗
-                                    sort(comp.begin(), comp.end(), cmp_atk_dmg); //攻擊*暴傷
+                                    // sort(comp.begin(), comp.end(), cmp_atk_dmg); //攻擊*暴傷
                                     //sort(comp.begin(), comp.end(), cmp_atk_dmg_hp); //攻擊*暴傷*生命
                                     //sort(comp.begin(), comp.end(), cmp_dmg); //暴傷
                                     comp.pop_back();
