@@ -93,7 +93,7 @@ void calculate()
     vector<individual> comp;
     comp.clear();
     int f = 0;
-    n_need = 5;
+    n_need = 30;
     for (int w = 0; w < n_weapon; w++)
     {
         for (int h = 0; h < n_helmet; h++)
@@ -115,19 +115,21 @@ void calculate()
                             temp.set_type[boots[b].set_type[0]]++;
 
                             //Auxiliary_Lots(hero); //5/92(n_need/sec)
-                            //Watcher_Schuri(hero); //30/12(n_need/sec)
+                            // Watcher_Schuri(hero); //14
                             //Luna(hero); //30/8
                             //Seaside_Bellona(hero); //30/43
-                            Dizzy(hero); //132/5
-                            //Iseria(hero); //30/15
-                            //Tamarinne(hero); //30/35
+                            // Dizzy(hero); //132
+                            // Iseria(hero); //10
+                            // Tamarinne(hero); //7
                             //Angelica(hero); //30/28
-                            //Angelic_Montmorancy(hero); //30/28
+                            Angelic_Montmorancy(hero); //2
                             //Lorina(hero); //30/1
-                            //Violet(hero); //30/0
+                            // Violet(hero); //5
+                            // Assassin_Cartuja(hero); //4
+                            // Cidd(hero); //21
                             //Vildred(hero); //30/1.37
                             //Jecht(hero); //30/0.67
-                            // Arbiter_Vildred(hero); //30/3
+                            // Arbiter_Vildred(hero); //19
                             //Sez(hero); //30/7.71
                             //Bellona(hero); //30/3
                             //Righteous_Thief_Roozid(hero); //30/1.76
@@ -152,44 +154,47 @@ void calculate()
                                 hero.dual_atk_chance += (temp.set_type[10] / 2 * 4);
 
                             hero.speed += weapon[w].speed + helmet[h].speed + armor[a].speed + necklace[n].speed + ring[r].speed + boots[b].speed;
-                            //hero.crit_chance += weapon[w].crit_chance + helmet[h].crit_chance + armor[a].crit_chance + necklace[n].crit_chance + ring[r].crit_chance + boots[b].crit_chance;
+                            // hero.crit_chance += weapon[w].crit_chance + helmet[h].crit_chance + armor[a].crit_chance + necklace[n].crit_chance + ring[r].crit_chance + boots[b].crit_chance;
 
                             //0=生命 1=防禦 2=攻擊 3=速度 4=暴擊 5=命中 6=暴傷
                             //7=吸血 8=反擊 9=抵抗 10=夾擊 11=憤怒 12=免疫
 
-                            if (temp.set_type[3] >= 4 && hero.speed >= 200) //1速命中蒂姬
+                            // if (temp.set_type[3] >= 4 && hero.speed >= 200) //1速命中蒂姬
+                            // if (temp.set_type[2] >= 4 && hero.crit_chance >= 85) //攻擊暗刺
+                            // if (temp.set_type[2] >= 4 && hero.crit_chance >= 85) //攻擊光槍
+                            // if (temp.set_type[3] == 4 && temp.set_type[12] == 2 && hero.speed >= 200) //速度免疫命中伊賽
+                            // if (temp.set_type[3] == 4 && temp.set_type[12] == 2 && hero.speed >= 180) //速度免疫生命歌姬
+                            // if (temp.set_type[7] >= 4 && hero.crit_chance >= 80) //吸血反賊
+                            // if (temp.set_type[8] >= 4 && hero.crit_chance >= 80) //反擊暗狗
+                            // if (temp.set_type[3] >= 4 && hero.crit_chance >= 85) //速度攻擊席德
+                            if (temp.set_type[3] >= 4 && hero.speed >= 180) //速度小水奶
 
-                            //if (temp.set_type[2] >= 4 && temp.crit_chance >= 90 - 27) //攻擊光槍
-                            //if (temp.set_type[7] >= 4 && temp.crit_chance >= 85 - 30 - 15) //吸血水龍
-                            //if (temp.set_type[3] >= 4 && temp.crit_chance >= 90 - 15) //速度水扇
-                            //if (temp.set_type[8] >= 4 && temp.speed >= (200 - 115)) //反擊蒂姬
-                            //if (temp.set_type[3] >= 4 && temp.speed >= (202 - 112 * 1.25)) //速度伊賽
-                            //if (temp.set_type[3] >= 4 && temp.speed >= (182 - 106 * 1.25)) //速度歌姬
-                            //if (temp.set_type[3] >= 4 && temp.speed >= (146 - 88 * 1.25)) //速度水奶
-                            //if (temp.set_type[3] >= 4 && temp.speed >= (180 - 94 * 1.25)) //速度小水奶
-                            //if (temp.set_type[2] >= 4 && temp.crit_chance >= 85 - 23) //攻擊lorina
-                            //if (temp.set_type[7] >= 4 && temp.crit_chance >= 80 - 23) //吸血反賊
-                            //if (temp.set_type[3] >= 4 && temp.crit_chance >= 85 - 23) //速度木刺
-                            //if (temp.set_type[3] >= 4) //2速
-                            //if (temp.set_type[3] >= 4) //3速
-                            //if (temp.set_type[2] >= 4 && temp.crit_chance >= 85 - 23) //攻擊水刺
-                            // if (temp.set_type[3] >= 4 && hero.crit_chance >= 85) //攻擊暗刺
-                            //if (temp.set_type[3] >= 4 && temp.crit_chance >= 85 - 23) //速度暴傷木扇
+                            //if (temp.set_type[7] >= 4 && hero.crit_chance >= 85 - 30 ) //吸血水龍
+                            //if (temp.set_type[3] >= 4 && hero.crit_chance >= 90 ) //速度水扇
+                            //if (temp.set_type[3] >= 4 && hero.speed >= 182) //速度歌姬
+                            //if (temp.set_type[3] >= 4 && hero.speed >= 146) //速度水奶
+                            //if (temp.set_type[2] >= 4 && hero.crit_chance >= 85) //攻擊lorina
+                            //if (temp.set_type[3] >= 4 && hero.crit_chance >= 85 ) //速度木刺
+                            //if (temp.set_type[2] >= 4 && hero.crit_chance >= 85) //攻擊水刺
+                            //if (temp.set_type[3] >= 4 && hero.crit_chance >= 85 ) //速度暴傷木扇
                             {
                                 copy(hero, weapon[w], helmet[h], armor[a], necklace[n], ring[r], boots[b], w, h, a, n, r, b);
-                                comp.push_back(hero);
-                                f++;
+                                //if (hero.effect_resist > 60)
+                                {
+                                    comp.push_back(hero);
+                                    f++;
+                                }
                                 if (f > n_need)
                                 {
-                                    sort(comp.begin(), comp.end(), cmp_speed); //速度
+                                    // sort(comp.begin(), comp.end(), cmp_speed); //速度
                                     // sort(comp.begin(), comp.end(), cmp_speed_eff); //速度命中
                                     //sort(comp.begin(), comp.end(), cmp_atk); //攻擊
-                                    //sort(comp.begin(), comp.end(), cmp_hp); //生命
-                                    //sort(comp.begin(), comp.end(), cmp_eff); //命中
+                                    sort(comp.begin(), comp.end(), cmp_hp); //生命
+                                    // sort(comp.begin(), comp.end(), cmp_eff); //命中
                                     //sort(comp.begin(), comp.end(), cmp_hp_eff); //生命*命中
                                     //sort(comp.begin(), comp.end(), cmp_hp_res); //生命*抵抗
                                     // sort(comp.begin(), comp.end(), cmp_atk_dmg); //攻擊*暴傷
-                                    //sort(comp.begin(), comp.end(), cmp_atk_dmg_hp); //攻擊*暴傷*生命
+                                    // sort(comp.begin(), comp.end(), cmp_atk_dmg_hp); //攻擊*暴傷*生命
                                     //sort(comp.begin(), comp.end(), cmp_dmg); //暴傷
                                     comp.pop_back();
                                     f--;
@@ -221,9 +226,16 @@ void calculate()
             fs << comp[n].belong[5];
         else
             fs << "0" << comp[n].belong[5];
-        fs << " atk = " << comp[n].atk << " hp = " << comp[n].hp << " def = " << comp[n].def << " crit = " << comp[n].crit_chance
-           << " crit_dmg = " << comp[n].crit_dmg << " dual = " << comp[n].dual_atk_chance << " effect = " << comp[n].effectiveness
-           << " resist = " << comp[n].effect_resist << " speed = " << comp[n].speed << endl;
+        fs << " atk = " << comp[n].atk
+           << " def = " << comp[n].def
+           << " hp = " << comp[n].hp
+           << " speed = " << comp[n].speed
+           << " crit = " << comp[n].crit_chance
+           << " crit_dmg = " << comp[n].crit_dmg
+           << " effect = " << comp[n].effectiveness
+           << " resist = " << comp[n].effect_resist
+           << " dual = " << comp[n].dual_atk_chance
+           << endl;
     }
     fs.close();
     delete[] weapon;

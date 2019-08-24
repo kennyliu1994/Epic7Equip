@@ -274,3 +274,35 @@ void Angelic_Montmorancy(individual &temp)
     temp.hp_pctg = 0;
     temp.def_pctg = 0;
 }
+
+void Assassin_Cartuja(individual &temp)
+{
+    temp.atk = 1119;
+    temp.hp = 6091;
+    temp.speed = 100;
+    temp.def = 594;
+    temp.crit_chance = 15;
+    temp.crit_dmg = 150;
+    temp.dual_atk_chance = 5;
+    temp.effectiveness = 0;
+    temp.effect_resist = 0;
+    temp.atk_pctg = 0;
+    temp.hp_pctg = 0;
+    temp.def_pctg = 0;
+}
+
+void Cidd(individual &temp)
+{
+    temp.atk = 1029;
+    temp.hp = 5097;
+    temp.speed = 126;
+    temp.def = 473;
+    temp.crit_chance = 23;
+    temp.crit_dmg = 150;
+    temp.dual_atk_chance = 5;
+    temp.effectiveness = 0;
+    temp.effect_resist = 0;
+    temp.atk_pctg = 0;
+    temp.hp_pctg = 0;
+    temp.def_pctg = 0;
+}

@@ -12,7 +12,6 @@ OBJS = $(SRCS:.cpp=.o)
 all: equip test
 equip: $(OBJS)
 	@$(CC) $(CXXFLAGS) $^ -o $@
-	#g++ -g -Wall %.o -o equip
 %.o: %.cpp global.h
 	@$(CC) $(CXXFLAGS) -c $<
 help: 

@@ -68,5 +68,7 @@ void Jecht(individual &temp);
 void Watcher_Schuri(individual &temp);
 void Seaside_Bellona(individual &temp);
 void Angelic_Montmorancy(individual &temp);
+void Assassin_Cartuja(individual &temp);
+void Cidd(individual &temp);
 
 #endif
