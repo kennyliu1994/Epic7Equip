@@ -34,48 +34,7 @@ void cal_size()
     fs.close();
 }
 
-string type_in_Chinese(const int t)
-{
-    //0=生命 1=防禦 2=攻擊 3=速度 4=暴擊 5=命中 6=暴傷
-    //7=吸血 8=反擊 9=抵抗 10=夾擊 11=憤怒 12=免疫
-    if (t == 0)
-        return "生命";
-    else if (t == 1)
-        return "防禦";
-    else if (t == 2)
-        return "攻擊";
-    else if (t == 3)
-        return "速度";
-    else if (t == 4)
-        return "暴擊";
-    else if (t == 5)
-        return "命中";
-    else if (t == 6)
-        return "暴傷";
-    else if (t == 7)
-        return "吸血";
-    else if (t == 8)
-        return "反擊";
-    else if (t == 9)
-        return "抵抗";
-    else if (t == 10)
-        return "夾擊";
-    else if (t == 11)
-        return "憤怒";
-    else if (t == 12)
-        return "免疫";
-}
 
-void split(const string &s, vector<string> &sv, const char delim = ' ')
-{
-    sv.clear();
-    stringstream ss(s);
-    string temp;
-    while (getline(ss, temp, delim))
-    {
-        sv.emplace_back(move(temp));
-    }
-}
 
 void copy(individual &i, vector<string> words, const int index)
 {
@@ -98,20 +57,6 @@ void copy(individual &i, vector<string> words, const int index)
 
 void load()
 {
-    fstream fs;
-    fstream fs_w;
-    fstream fs_h;
-    fstream fs_a;
-    fstream fs_n;
-    fstream fs_r;
-    fstream fs_b;
-    fs.open("list.in", ios::in);
-    fs_w.open("./input/weapon.in", ios::out);
-    fs_h.open("./input/helmet.in", ios::out);
-    fs_a.open("./input/armor.in", ios::out);
-    fs_n.open("./input/necklace.in", ios::out);
-    fs_r.open("./input/ring.in", ios::out);
-    fs_b.open("./input/boots.in", ios::out);
     cal_size();
     weapon = new individual[n_weapon];
     helmet = new individual[n_helmet];
@@ -186,11 +131,5 @@ void load()
             continue;
         }
     }
-    fs.close();
-    fs_w.close();
-    fs_h.close();
-    fs_a.close();
-    fs_n.close();
-    fs_r.close();
-    fs_b.close();
+    
 }

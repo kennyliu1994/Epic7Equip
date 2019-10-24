@@ -1,7 +1,6 @@
 SHELL := /bin/bash
-CC = g++
-#CXXFLAGS = -g -std=c++11 -Wall -ansi
-CXXFLAGS = -std=c++11
+CXX := g++
+CXXFLAGS := -g -std=c++11 -O3 -Wall
 SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
 
@@ -9,15 +8,16 @@ OBJS = $(SRCS:.cpp=.o)
 .SUFFIXS: .c .cpp .o
 .PHONY: all clean run
 
-all: equip test
-equip: $(OBJS)
-	@$(CC) $(CXXFLAGS) $^ -o $@
-%.o: %.cpp global.h
-	@$(CC) $(CXXFLAGS) -c $<
+all: main
+main: $(OBJS)
+	@$(CXX) $(CXXFLAGS) $^ -o $@
+$(OBJS): $(SRCS)
+	@$(CXX) $(CXXFLAGS) -c $^
 help: 
-	@echo ./equip calculate
-	@echo ./equip input "equip_type" "set_type" atk atk_pctg hp hp_pctg def def_pctg crit_chance crit_dmg dual_atk_chance effectiveness effect_resist speed;
-test:
-	./equip calculate
+	@echo ./main calculate
+	@echo ./main input "equip_type" "set_type" atk atk_pctg hp hp_pctg def def_pctg crit_chance crit_dmg dual_atk_chance effectiveness effect_resist speed;
+run:
+	# ./main input
+	./main calculate
 clean: 
-	rm -rf $(OBJS)
+	-rm -rf *.o $(EXEC)
