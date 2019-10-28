@@ -3,6 +3,7 @@ CXX := g++
 CXXFLAGS := -g -std=c++11 -O3 -Wall
 SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
+EXEC := $(SRCS:.cpp=)
 
 .SUFFIXES:
 .SUFFIXS: .c .cpp .o
@@ -10,14 +11,13 @@ OBJS = $(SRCS:.cpp=.o)
 
 all: main
 main: $(OBJS)
-	@$(CXX) $(CXXFLAGS) $^ -o $@
+	$(CXX) $(CXXFLAGS) $^ -o $@
 $(OBJS): $(SRCS)
 	@$(CXX) $(CXXFLAGS) -c $^
 help: 
-	@echo ./main calculate
-	@echo ./main input "equip_type" "set_type" atk atk_pctg hp hp_pctg def def_pctg crit_chance crit_dmg dual_atk_chance effectiveness effect_resist speed;
+	@echo ./main calculate [角色] [套裝] [暴擊>?] [速度>?]
+	@echo ./main input [部位] [套裝] 515 0 601 22 0 0 0 0 13 5 0
 run:
-	# ./main input
-	./main calculate
+	./main calculate Lorina 攻擊 90 0
 clean: 
 	-rm -rf *.o $(EXEC)

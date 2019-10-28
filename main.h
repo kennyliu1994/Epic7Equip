@@ -2,21 +2,17 @@
 #define _MAIN_H_
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
-// #include <string>
-// #include <vector>
 
 class equipment
 {
 public:
-    string type;
     string part;
-    // //0=health 1=defense 2=attack 3=speed 4=ctitical 5=hit rate 6=destruction
-    // //7=lifesteal 8=counter 9=resist 10=unity 11=rage 12=immunity
-    // vector<int> belong;
-    // int used;
-    // int index;
+    string type;
+    //0=生命 1=防禦 2=攻擊 3=速度 4=暴擊 5=命中 6=破滅
+    //7=吸血 8=反擊 9=抵抗 10=夾攻 11=憤怒 12=免疫
     int atk;
     int atk_pctg;
     int hp;
@@ -25,34 +21,59 @@ public:
     int def_pctg;
     int crit;
     int crit_dmg;
-    // int dual_atk_chance;
     int effective;
     int resist;
     int spd;
 };
 
-// //extern double total_progress;
-// extern int n_weapon;
-// extern int n_helmet;
-// extern int n_armor;
-// extern int n_necklace;
-// extern int n_ring;
-// extern int n_boots;
-// extern int n_need;
-// extern individual *weapon;
-// extern individual *helmet;
-// extern individual *armor;
-// extern individual *necklace;
-// extern individual *ring;
-// extern individual *boots;
-// extern individual hero;
-// extern individual temp;
+class hero_status
+{
+public:
+    vector<int> part_index;
+    int atk;
+    int atk_pctg;
+    int hp;
+    int hp_pctg;
+    int def;
+    int def_pctg;
+    int crit;
+    int crit_dmg;
+    int dual_atk;
+    int effective;
+    int resist;
+    int spd;
+};
+
+class part
+{
+public:
+    vector<string> type;
+    vector<int> atk;
+    vector<int> atk_pctg;
+    vector<int> hp;
+    vector<int> hp_pctg;
+    vector<int> def;
+    vector<int> def_pctg;
+    vector<int> crit;
+    vector<int> crit_dmg;
+    vector<int> effective;
+    vector<int> resist;
+    vector<int> spd;
+};
+
+extern string input_path;
+extern string output_path;
+extern string hero_name;
+extern string need_type;
+extern int need_spd;
+extern int need_crit;
 
 void run();
 void input_new_equipment();
 void load_database();
-// void calculate();
-// //void split(const string &s, vector<string> &sv, const char delim);
+void calculate();
+void init_hero(hero_status &);
+void init_part(part &, part &, part &, part &, part &, part &);
 
 // void Lorina(individual &temp);
 // void Sez(individual &temp);

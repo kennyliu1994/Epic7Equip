@@ -1,31 +1,24 @@
 #include "main.h"
+#include "Kenny.h"
 
-// #include <fstream>
-
+string input_path = "./input/epic7_output.txt";
+string output_path;
 string operation;
-
-// #include <time.h>
-
-// int n_weapon;
-// int n_helmet;
-// int n_armor;
-// int n_necklace;
-// int n_ring;
-// int n_boots;
-// int n_need;
-//double total_progress;
-// individual *weapon;
-// individual *helmet;
-// individual *armor;
-// individual *necklace;
-// individual *ring;
-// individual *boots;
-// individual hero; //角色初始數值
-// individual temp; //store for compare
+string hero_name;
+string need_type;
+int need_spd = 0;
+int need_crit = 0;
 
 int main(int argc, char **argv)
 {
+    Kenny_convert ct;
+    output_path = "./output/" + ct.char2str(argv[2]) + "_" + ct.char2str(argv[3]) + ".txt";
+
     operation = argv[1];
+    hero_name = argv[2];
+    need_type = argv[3];
+    need_crit = ct.char2int(argv[4]);
+    need_spd = ct.char2int(argv[5]);
 
     clock_t start = clock();
     run();
@@ -41,7 +34,7 @@ void run()
     }
     if (operation == "calculate")
     {
-        load_database();
-        // calculate();
+        // load_database();
+        calculate();
     }
 }

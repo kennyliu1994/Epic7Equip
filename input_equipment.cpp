@@ -65,7 +65,7 @@ void input_new_equipment()
     }
 
     fstream fs_database;
-    fs_database.open("database.txt", ios::app);
+    fs_database.open(input_path.c_str(), ios::app);
     fs_database << endl
                 << e.part << " " << e.type << " " << e.atk << " "
                 << e.atk_pctg << " " << e.hp << " " << e.hp_pctg << " "
