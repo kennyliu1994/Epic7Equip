@@ -15,9 +15,10 @@ main: $(OBJS)
 $(OBJS): $(SRCS)
 	@$(CXX) $(CXXFLAGS) -c $^
 help: 
-	@echo ./main calculate [角色] [套裝] [暴擊>?] [速度>?]
-	@echo ./main input [部位] [套裝] 515 0 601 22 0 0 0 0 13 5 0
+	@echo ./main input [部位] [套裝] [攻擊] [攻擊%] [生命] [生命%] [防禦] [防禦%] [暴擊] [暴傷] [命中] [抵抗] [速度]
+	@echo ./main database
+	@echo ./main calculate [角色] [套裝] [排序] [暴擊大於多少] [速度大於多少]
 run:
-	./main calculate Lorina 攻擊 90 0
+	./main calculate 蒂姬 速度 速度 0 240
 clean: 
-	-rm -rf *.o $(EXEC)
+	@-rm -rf *.o $(EXEC)

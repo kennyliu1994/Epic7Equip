@@ -59,12 +59,14 @@ public:
     vector<int> effective;
     vector<int> resist;
     vector<int> spd;
+    vector<string> used;
 };
 
 extern string input_path;
 extern string output_path;
 extern string hero_name;
 extern string need_type;
+extern string sort_by;
 extern int need_spd;
 extern int need_crit;
 
@@ -74,25 +76,5 @@ void load_database();
 void calculate();
 void init_hero(hero_status &);
 void init_part(part &, part &, part &, part &, part &, part &);
-
-// void Lorina(individual &temp);
-// void Sez(individual &temp);
-// void Angelica(individual &temp);
-// void Auxiliary_Lots(individual &temp);
-// void Luna(individual &temp);
-// void Vildred(individual &temp);
-// void Tamarinne(individual &temp);
-// void Dizzy(individual &temp);
-// void Violet(individual &temp);
-// void Iseria(individual &temp);
-// void Arbiter_Vildred(individual &temp);
-// void Righteous_Thief_Roozid(individual &temp);
-// void Bellona(individual &temp);
-// void Jecht(individual &temp);
-// void Watcher_Schuri(individual &temp);
-// void Seaside_Bellona(individual &temp);
-// void Angelic_Montmorancy(individual &temp);
-// void Assassin_Cartuja(individual &temp);
-// void Cidd(individual &temp);
 
 #endif

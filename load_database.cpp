@@ -36,6 +36,7 @@ void load_database()
             {
                 fs_w << " " << word[i];
             }
+            fs_w << " *"; //used or not used
             fs_w << endl;
             index[0]++;
         }
@@ -48,6 +49,7 @@ void load_database()
             {
                 fs_h << " " << word[i];
             }
+            fs_h << " *"; //used or not used
             fs_h << endl;
             index[1]++;
         }
@@ -60,6 +62,7 @@ void load_database()
             {
                 fs_a << " " << word[i];
             }
+            fs_a << " *"; //used or not used
             fs_a << endl;
             index[2]++;
         }
@@ -72,6 +75,7 @@ void load_database()
             {
                 fs_n << " " << word[i];
             }
+            fs_n << " *"; //used or not used
             fs_n << endl;
             index[3]++;
         }
@@ -84,6 +88,7 @@ void load_database()
             {
                 fs_r << " " << word[i];
             }
+            fs_r << " *"; //used or not used
             fs_r << endl;
             index[4]++;
         }
@@ -96,6 +101,7 @@ void load_database()
             {
                 fs_b << " " << word[i];
             }
+            fs_b << " *"; //used or not used
             fs_b << endl;
             index[5]++;
         }

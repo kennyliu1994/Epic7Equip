@@ -49,10 +49,22 @@ bool filter(unsigned int w, unsigned int h, unsigned int a, unsigned int n, unsi
     cal_type(boots.type[b]);
     //0=生命 1=防禦 2=攻擊 3=速度 4=暴擊 5=命中 6=破滅
     //7=吸血 8=反擊 9=抵抗 10=夾攻 11=憤怒 12=免疫
-    if (need_type == "攻擊" && type[2] >= 4)
-        return true; //1
+    if (need_type == "攻擊")
+    {
+        if (type[2] >= 4)
+            return true; //1
+        else
+            return false; //0
+    }
+    else if (need_type == "速度")
+    {
+        if (type[3] >= 4)
+            return true; //1
+        else
+            return false; //0
+    }
     else
-        return false; //0
+        return false;
 }
 
 void suit_effect(hero_status &hero)
@@ -117,6 +129,11 @@ bool cmp_atk(hero_status const &a, hero_status const &b)
     return a.atk > b.atk;
 };
 
+bool cmp_spd(hero_status const &a, hero_status const &b)
+{
+    return a.spd > b.spd;
+};
+
 void calculate()
 {
     hero_status hero;
@@ -124,16 +141,28 @@ void calculate()
     vector<hero_status> comp;
     for (unsigned int w = 0; w < weapon.type.size(); w++)
     {
+        if (weapon.used[w] == "*")
+            continue;
         for (unsigned int h = 0; h < helmet.type.size(); h++)
         {
+            if (helmet.used[h] == "*")
+                continue;
             for (unsigned int a = 0; a < armor.type.size(); a++)
             {
+                if (armor.used[a] == "*")
+                    continue;
                 for (unsigned int n = 0; n < necklace.type.size(); n++)
                 {
+                    if (necklace.used[n] == "*")
+                        continue;
                     for (unsigned int r = 0; r < ring.type.size(); r++)
                     {
+                        if (ring.used[r] == "*")
+                            continue;
                         for (unsigned int b = 0; b < boots.type.size(); b++)
                         {
+                            if (boots.used[b] == "*")
+                                continue;
                             if (filter(w, h, a, n, r, b))
                             {
                                 init_hero(hero);
@@ -143,7 +172,14 @@ void calculate()
                                     comp.push_back(hero);
                                     while (comp.size() > 20)
                                     {
-                                        sort(comp.begin(), comp.end(), cmp_atk);
+                                        if (sort_by == "攻擊")
+                                        {
+                                            sort(comp.begin(), comp.end(), cmp_atk);
+                                        }
+                                        else if (sort_by == "速度")
+                                        {
+                                            sort(comp.begin(), comp.end(), cmp_spd);
+                                        }
                                         comp.pop_back();
                                     }
                                 }
@@ -167,17 +203,13 @@ void calculate()
     fs.open(output_path.c_str(), ios::out);
     for (unsigned int i = 0; i < comp.size(); i++)
     {
-        for (int j = 0; j < 5; j++)
+        for (int j = 0; j < 6; j++)
         {
             if (comp[i].part_index[j] > 9)
                 fs << comp[i].part_index[j] << ",";
             else
                 fs << "0" << comp[i].part_index[j] << ",";
         }
-        if (comp[i].part_index[5] > 9)
-            fs << comp[i].part_index[5];
-        else
-            fs << "0" << comp[i].part_index[5];
         fs << " 攻擊 = " << comp[i].atk
            << " 生命 = " << comp[i].hp
            << " 防禦 = " << comp[i].def

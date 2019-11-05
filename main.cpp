@@ -6,19 +6,24 @@ string output_path;
 string operation;
 string hero_name;
 string need_type;
-int need_spd = 0;
+string sort_by;
 int need_crit = 0;
+int need_spd = 0;
 
 int main(int argc, char **argv)
 {
     Kenny_convert ct;
-    output_path = "./output/" + ct.char2str(argv[2]) + "_" + ct.char2str(argv[3]) + ".txt";
 
     operation = argv[1];
-    hero_name = argv[2];
-    need_type = argv[3];
-    need_crit = ct.char2int(argv[4]);
-    need_spd = ct.char2int(argv[5]);
+    if (operation == "calculate")
+    {
+        output_path = "./output/" + ct.char2str(argv[2]) + "_" + ct.char2str(argv[3]) + ".txt";
+        hero_name = argv[2];
+        need_type = argv[3];
+        sort_by = argv[4];
+        need_crit = ct.char2int(argv[5]);
+        need_spd = ct.char2int(argv[6]);
+    }
 
     clock_t start = clock();
     run();
@@ -32,9 +37,12 @@ void run()
     {
         input_new_equipment();
     }
+    if (operation == "database")
+    {
+        load_database(); //datebase update
+    }
     if (operation == "calculate")
     {
-        // load_database();
         calculate();
     }
 }

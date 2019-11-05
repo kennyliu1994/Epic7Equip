@@ -19,6 +19,7 @@ void load(part &p, vector<string> word)
     p.effective.push_back(ct.str2int(word[11]));
     p.resist.push_back(ct.str2int(word[12]));
     p.spd.push_back(ct.str2int(word[13]));
+    p.used.push_back(word[14]);
 }
 
 void init_part(part &weapon, part &helmet, part &armor, part &necklace, part &ring, part &boots)
