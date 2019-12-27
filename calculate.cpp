@@ -1,10 +1,78 @@
 #include "main.h"
+#include "Kenny.h"
 
 #include <algorithm> // sort
 #include <fstream>
 
 vector<int> type;
 part weapon, helmet, armor, necklace, ring, boots;
+
+void load(part &p, vector<string> word)
+{
+    Kenny_convert ct;
+    p.type.push_back(word[2]);
+    p.atk.push_back(ct.str2int(word[3]));
+    p.atk_pctg.push_back(ct.str2int(word[4]));
+    p.hp.push_back(ct.str2int(word[5]));
+    p.hp_pctg.push_back(ct.str2int(word[6]));
+    p.def.push_back(ct.str2int(word[7]));
+    p.def_pctg.push_back(ct.str2int(word[8]));
+    p.crit.push_back(ct.str2int(word[9]));
+    p.crit_dmg.push_back(ct.str2int(word[10]));
+    p.effective.push_back(ct.str2int(word[11]));
+    p.resist.push_back(ct.str2int(word[12]));
+    p.spd.push_back(ct.str2int(word[13]));
+    p.used.push_back(word[14]);
+}
+
+void init_part(part &weapon, part &helmet, part &armor, part &necklace, part &ring, part &boots)
+{
+    fstream fs_w, fs_h, fs_a, fs_n, fs_r, fs_b;
+    fs_w.open("./parts/weapon.txt", ios::in);
+    fs_h.open("./parts/helmet.txt", ios::in);
+    fs_a.open("./parts/armor.txt", ios::in);
+    fs_n.open("./parts/necklace.txt", ios::in);
+    fs_r.open("./parts/ring.txt", ios::in);
+    fs_b.open("./parts/boots.txt", ios::in);
+    string line;         //一行
+    vector<string> word; //一個字
+    while (getline(fs_w, line))
+    {
+        split(line, word, ' ');
+        load(weapon, word);
+    }
+    while (getline(fs_h, line))
+    {
+        split(line, word, ' ');
+        load(helmet, word);
+    }
+    while (getline(fs_a, line))
+    {
+        split(line, word, ' ');
+        load(armor, word);
+    }
+    while (getline(fs_n, line))
+    {
+        split(line, word, ' ');
+        load(necklace, word);
+    }
+    while (getline(fs_r, line))
+    {
+        split(line, word, ' ');
+        load(ring, word);
+    }
+    while (getline(fs_b, line))
+    {
+        split(line, word, ' ');
+        load(boots, word);
+    }
+    fs_w.close();
+    fs_h.close();
+    fs_a.close();
+    fs_n.close();
+    fs_r.close();
+    fs_b.close();
+}
 
 void cal_type(string s)
 {
@@ -47,6 +115,7 @@ bool filter(unsigned int w, unsigned int h, unsigned int a, unsigned int n, unsi
     cal_type(necklace.type[n]);
     cal_type(ring.type[r]);
     cal_type(boots.type[b]);
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //0=生命 1=防禦 2=攻擊 3=速度 4=暴擊 5=命中 6=破滅
     //7=吸血 8=反擊 9=抵抗 10=夾攻 11=憤怒 12=免疫
     if (need_type == "攻擊")
@@ -63,10 +132,64 @@ bool filter(unsigned int w, unsigned int h, unsigned int a, unsigned int n, unsi
         else
             return false; //0
     }
-    else
-        return false;
+    else if (need_type == "速度生命")
+    {
+        if (type[3] == 4 && type[0] == 2)
+            return true; //1
+        else
+            return false; //0
+    }
+    else if (need_type == "速度命中")
+    {
+        if (type[3] == 4 && type[5] == 2)
+            return true; //1
+        else
+            return false; //0
+    }
+    else if (need_type == "速度抵抗")
+    {
+        if (type[3] == 4 && type[9] == 2)
+            return true; //1
+        else
+            return false; //0
+    }
+    else if (need_type == "速度免疫")
+    {
+        if (type[3] == 4 && type[12] == 2)
+            return true; //1
+        else
+            return false; //0
+    }
+    else if (need_type == "破滅")
+    {
+        if (type[6] >= 4)
+            return true; //1
+        else
+            return false; //0
+    }
+    else if (need_type == "吸血")
+    {
+        if (type[7] >= 4)
+            return true; //1
+        else
+            return false; //0
+    }
+    else if (need_type == "反擊")
+    {
+        if (type[8] >= 4)
+            return true; //1
+        else
+            return false; //0
+    }
+    else if (need_type == "憤怒")
+    {
+        if (type[11] >= 4)
+            return true; //1
+        else
+            return false; //0
+    }
 }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void suit_effect(hero_status &hero)
 {
     if (type[0] >= 2)
@@ -123,7 +246,7 @@ bool hero_with_suit(hero_status &hero, unsigned int w, unsigned int h, unsigned 
     else
         return false;
 }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 bool cmp_atk(hero_status const &a, hero_status const &b)
 {
     return a.atk > b.atk;
@@ -133,7 +256,7 @@ bool cmp_spd(hero_status const &a, hero_status const &b)
 {
     return a.spd > b.spd;
 };
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void calculate()
 {
     hero_status hero;
@@ -141,27 +264,27 @@ void calculate()
     vector<hero_status> comp;
     for (unsigned int w = 0; w < weapon.type.size(); w++)
     {
-        if (weapon.used[w] == "*")
+        if (weapon.used[w] == "used")
             continue;
         for (unsigned int h = 0; h < helmet.type.size(); h++)
         {
-            if (helmet.used[h] == "*")
+            if (helmet.used[h] == "used")
                 continue;
             for (unsigned int a = 0; a < armor.type.size(); a++)
             {
-                if (armor.used[a] == "*")
+                if (armor.used[a] == "used")
                     continue;
                 for (unsigned int n = 0; n < necklace.type.size(); n++)
                 {
-                    if (necklace.used[n] == "*")
+                    if (necklace.used[n] == "used")
                         continue;
                     for (unsigned int r = 0; r < ring.type.size(); r++)
                     {
-                        if (ring.used[r] == "*")
+                        if (ring.used[r] == "used")
                             continue;
                         for (unsigned int b = 0; b < boots.type.size(); b++)
                         {
-                            if (boots.used[b] == "*")
+                            if (boots.used[b] == "used")
                                 continue;
                             if (filter(w, h, a, n, r, b))
                             {
@@ -172,6 +295,9 @@ void calculate()
                                     comp.push_back(hero);
                                     while (comp.size() > 20)
                                     {
+                                        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                        //0=生命 1=防禦 2=攻擊 3=速度 4=暴擊 5=命中 6=破滅
+                                        //7=吸血 8=反擊 9=抵抗 10=夾攻 11=憤怒 12=免疫
                                         if (sort_by == "攻擊")
                                         {
                                             sort(comp.begin(), comp.end(), cmp_atk);
@@ -180,6 +306,7 @@ void calculate()
                                         {
                                             sort(comp.begin(), comp.end(), cmp_spd);
                                         }
+                                        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                         comp.pop_back();
                                     }
                                 }

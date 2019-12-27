@@ -62,19 +62,19 @@ public:
     vector<string> used;
 };
 
-extern string input_path;
+extern int need_spd;
+extern int need_crit;
+// extern string input_path;
 extern string output_path;
 extern string hero_name;
 extern string need_type;
 extern string sort_by;
-extern int need_spd;
-extern int need_crit;
 
 void run();
-void input_new_equipment();
-void load_database();
+// void input_new_equipment();
+// void load_database();
 void calculate();
 void init_hero(hero_status &);
-void init_part(part &, part &, part &, part &, part &, part &);
+// void init_part(part &, part &, part &, part &, part &, part &);
 
 #endif
