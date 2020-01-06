@@ -62,8 +62,9 @@ public:
     vector<string> used;
 };
 
-extern int need_spd;
 extern int need_crit;
+extern int need_spd;
+extern int need_hp;
 // extern string input_path;
 extern string output_path;
 extern string hero_name;

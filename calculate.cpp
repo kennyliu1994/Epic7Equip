@@ -132,27 +132,6 @@ bool filter(unsigned int w, unsigned int h, unsigned int a, unsigned int n, unsi
         else
             return false; //0
     }
-    else if (need_type == "速度生命")
-    {
-        if (type[3] == 4 && type[0] == 2)
-            return true; //1
-        else
-            return false; //0
-    }
-    else if (need_type == "速度命中")
-    {
-        if (type[3] == 4 && type[5] == 2)
-            return true; //1
-        else
-            return false; //0
-    }
-    else if (need_type == "速度抵抗")
-    {
-        if (type[3] == 4 && type[9] == 2)
-            return true; //1
-        else
-            return false; //0
-    }
     else if (need_type == "速度免疫")
     {
         if (type[3] == 4 && type[12] == 2)
@@ -188,6 +167,10 @@ bool filter(unsigned int w, unsigned int h, unsigned int a, unsigned int n, unsi
         else
             return false; //0
     }
+    else
+    {
+        return true; //0
+    }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void suit_effect(hero_status &hero)
@@ -222,17 +205,19 @@ bool hero_with_suit(hero_status &hero, unsigned int w, unsigned int h, unsigned 
     hero.part_index[4] = r;
     hero.part_index[5] = b;
 
-    hero.spd += weapon.spd[w] + helmet.spd[h] + armor.spd[a] + necklace.spd[n] + ring.spd[r] + boots.spd[b];
+    hero.hp_pctg += weapon.hp_pctg[w] + helmet.hp_pctg[h] + armor.hp_pctg[a] + necklace.hp_pctg[n] + ring.hp_pctg[r] + boots.hp_pctg[b];
+    hero.hp *= 0.01 * hero.hp_pctg + 1;
+    hero.hp += weapon.hp[w] + helmet.hp[h] + armor.hp[a] + necklace.hp[n] + ring.hp[r] + boots.hp[b];
+
     hero.crit += weapon.crit[w] + helmet.crit[h] + armor.crit[a] + necklace.crit[n] + ring.crit[r] + boots.crit[b];
-    if (hero.spd >= need_spd && hero.crit >= need_crit)
+    hero.spd += weapon.spd[w] + helmet.spd[h] + armor.spd[a] + necklace.spd[n] + ring.spd[r] + boots.spd[b];
+
+    if (hero.hp >= need_hp && hero.crit >= need_crit && hero.spd >= need_spd)
     {
         hero.atk_pctg += weapon.atk_pctg[w] + helmet.atk_pctg[h] + armor.atk_pctg[a] + necklace.atk_pctg[n] + ring.atk_pctg[r] + boots.atk_pctg[b];
         hero.atk *= 0.01 * hero.atk_pctg + 1;
         hero.atk += weapon.atk[w] + helmet.atk[h] + armor.atk[a] + necklace.atk[n] + ring.atk[r] + boots.atk[b];
-
-        hero.hp_pctg += weapon.hp_pctg[w] + helmet.hp_pctg[h] + armor.hp_pctg[a] + necklace.hp_pctg[n] + ring.hp_pctg[r] + boots.hp_pctg[b];
-        hero.hp *= 0.01 * hero.hp_pctg + 1;
-        hero.hp += weapon.hp[w] + helmet.hp[h] + armor.hp[a] + necklace.hp[n] + ring.hp[r] + boots.hp[b];
+        // hero.atk *= 1.5; //attack buff
 
         hero.def_pctg += weapon.def_pctg[w] + helmet.def_pctg[h] + armor.def_pctg[a] + necklace.def_pctg[n] + ring.def_pctg[r] + boots.def_pctg[b];
         hero.def *= 0.01 * hero.def_pctg + 1;
@@ -247,14 +232,29 @@ bool hero_with_suit(hero_status &hero, unsigned int w, unsigned int h, unsigned 
         return false;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-bool cmp_atk(hero_status const &a, hero_status const &b)
+bool cmp_hp(hero_status const &a, hero_status const &b)
 {
-    return a.atk > b.atk;
+    return a.hp > b.hp;
+};
+
+bool cmp_atk_dmg(hero_status const &a, hero_status const &b)
+{
+    return a.atk * a.crit_dmg > b.atk * b.crit_dmg;
 };
 
 bool cmp_spd(hero_status const &a, hero_status const &b)
 {
     return a.spd > b.spd;
+};
+
+bool cmp_eff(hero_status const &a, hero_status const &b)
+{
+    return a.effective > b.effective;
+};
+
+bool cmp_res(hero_status const &a, hero_status const &b)
+{
+    return a.resist > b.resist;
 };
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void calculate()
@@ -293,19 +293,31 @@ void calculate()
                                 if (hero_with_suit(hero, w, h, a, n, r, b))
                                 {
                                     comp.push_back(hero);
-                                    while (comp.size() > 20)
+                                    while (comp.size() > 50)
                                     {
                                         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                         //0=生命 1=防禦 2=攻擊 3=速度 4=暴擊 5=命中 6=破滅
                                         //7=吸血 8=反擊 9=抵抗 10=夾攻 11=憤怒 12=免疫
-                                        if (sort_by == "攻擊")
+                                        if (sort_by == "生命")
                                         {
-                                            sort(comp.begin(), comp.end(), cmp_atk);
+                                            sort(comp.begin(), comp.end(), cmp_hp);
                                         }
                                         else if (sort_by == "速度")
                                         {
                                             sort(comp.begin(), comp.end(), cmp_spd);
                                         }
+                                        else if (sort_by == "攻擊暴傷")
+                                        {
+                                            sort(comp.begin(), comp.end(), cmp_atk_dmg);
+                                        }
+                                        else if (sort_by == "命中")
+                                        {
+                                            sort(comp.begin(), comp.end(), cmp_eff);
+                                        }
+                                        else if (sort_by == "抵抗")
+                                        {
+                                            sort(comp.begin(), comp.end(), cmp_res);
+                                        }                                        
                                         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                         comp.pop_back();
                                     }
@@ -316,10 +328,6 @@ void calculate()
                 }
             }
         }
-    }
-    if (comp.size() < 20)
-    {
-        sort(comp.begin(), comp.end(), cmp_atk);
     }
     if (comp.size() == 0)
     {

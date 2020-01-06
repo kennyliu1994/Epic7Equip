@@ -11,6 +11,7 @@ string need_type;
 string sort_by;
 int need_crit = 0;
 int need_spd = 0;
+int need_hp = 0;
 
 int main(int argc, char **argv)
 {
@@ -25,6 +26,7 @@ int main(int argc, char **argv)
         sort_by = argv[4];
         need_crit = ct.char2int(argv[5]);
         need_spd = ct.char2int(argv[6]);
+        need_hp = ct.char2int(argv[7]);
     }
 
     clock_t start = clock();
@@ -40,10 +42,39 @@ void input_new_equipment()
 
     cout << "部位 = " << endl;
     cin >> e.part;
-    cout << "生命0 防禦1 攻擊2 速度3 暴擊4 命中5 暴傷6 "
-         << "吸血7 反擊8 抵抗9 夾擊10 憤怒11 免疫12 " << endl;
+    cout << "生命0 防禦1 攻擊2 速度3 暴擊4 命中5 破滅6 "
+         << "吸血7 反擊8 抵抗9 夾攻10 憤怒11 免疫12 " << endl;
     cout << "種類 = " << endl;
-    cin >> e.type;
+    string type;
+    cin >> type;
+    if (type == "0")
+        e.type = "生命";
+    else if (type == "1")
+        e.type = "防禦";
+    else if (type == "2")
+        e.type = "攻擊";
+    else if (type == "3")
+        e.type = "速度";
+    else if (type == "4")
+        e.type = "暴擊";
+    else if (type == "5")
+        e.type = "命中";
+    else if (type == "6")
+        e.type = "破滅";
+    else if (type == "7")
+        e.type = "吸血";
+    else if (type == "8")
+        e.type = "反擊";
+    else if (type == "9")
+        e.type = "抵抗";
+    else if (type == "10")
+        e.type = "夾攻";
+    else if (type == "11")
+        e.type = "憤怒";
+    else if (type == "12")
+        e.type = "免疫";
+    else
+        cin >> e.type;
     cout << "攻擊 = " << endl;
     cin >> e.atk;
     if (e.atk != 0)

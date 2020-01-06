@@ -1,9 +1,100 @@
 #include "main.h"
 
 //暗槍,賽茲,水奶,暗拉茲,露娜,木刺,偶像,蒂姬,木反,伊賽麗亞,暗刺,木狼,木扇,狗子,光槍,水扇,小水奶,暗狗,席德
+//巴塞爾,泰溫,光鐮,暗兔,女僕,寶馬
 void init_hero(hero_status &hero)
 {
-    if (hero_name == "暗槍")
+    if (hero_name == "寶馬")
+    {
+        hero.atk = 839;
+        hero.hp = 6405;
+        hero.spd = 100;
+        hero.def = 752;
+        hero.crit = 15;
+        hero.crit_dmg = 150;
+        hero.dual_atk = 5;
+        hero.effective = 0;
+        hero.resist = 18;
+        hero.atk_pctg = 0;
+        hero.hp_pctg = 0;
+        hero.def_pctg = 0;
+    }
+    else if (hero_name == "女僕")
+    {
+        hero.atk = 640;
+        hero.hp = 5297;
+        hero.spd = 104;
+        hero.def = 680;
+        hero.crit = 15;
+        hero.crit_dmg = 150;
+        hero.dual_atk = 5;
+        hero.effective = 18;
+        hero.resist = 0;
+        hero.atk_pctg = 0;
+        hero.hp_pctg = 0;
+        hero.def_pctg = 0;
+    }
+    else if (hero_name == "暗兔")
+    {
+        hero.atk = 1187;
+        hero.hp = 4491;
+        hero.spd = 101;
+        hero.def = 627;
+        hero.crit = 27;
+        hero.crit_dmg = 160;
+        hero.dual_atk = 5;
+        hero.effective = 0;
+        hero.resist = 0;
+        hero.atk_pctg = 0;
+        hero.hp_pctg = 0;
+        hero.def_pctg = 0;
+    }
+    else if (hero_name == "光鐮")
+    {
+        hero.atk = 1039;
+        hero.hp = 5340;
+        hero.spd = 115;
+        hero.def = 617;
+        hero.crit = 27;
+        hero.crit_dmg = 150;
+        hero.dual_atk = 5;
+        hero.effective = 18;
+        hero.resist = 0;
+        hero.atk_pctg = 0;
+        hero.hp_pctg = 0;
+        hero.def_pctg = 0;
+    }
+    else if (hero_name == "泰溫")
+    {
+        hero.atk = 821;
+        hero.hp = 6751;
+        hero.spd = 110;
+        hero.def = 648;
+        hero.crit = 15;
+        hero.crit_dmg = 150;
+        hero.dual_atk = 5;
+        hero.effective = 18;
+        hero.resist = 0;
+        hero.atk_pctg = 0;
+        hero.hp_pctg = 0;
+        hero.def_pctg = 0;
+    }
+    else if (hero_name == "巴塞爾")
+    {
+        hero.atk = 1316;
+        hero.hp = 4777;
+        hero.spd = 108;
+        hero.def = 715;
+        hero.crit = 15;
+        hero.crit_dmg = 150;
+        hero.dual_atk = 5;
+        hero.effective = 18;
+        hero.resist = 0;
+        hero.atk_pctg = 0;
+        hero.hp_pctg = 0;
+        hero.def_pctg = 0;
+    }
+    else if (hero_name == "暗槍")
     {
         hero.atk = 1144;
         hero.atk_pctg = 0;
