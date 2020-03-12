@@ -1,10 +1,10 @@
 #include "main.h"
 
-//暗槍,賽茲,水奶,暗拉茲,露娜,木刺,偶像,蒂姬,木反,伊賽麗亞,暗刺,木狼,木扇,狗子,光槍,水扇,小水奶,暗狗,席德
-//巴塞爾,泰溫,光鐮,暗兔,女僕,寶馬
+//Lorina,水刺,水奶,暗拉茲,Luna,木刺,偶像,Dizzy,蘋果,Iseria,暗刺,木狗,木扇,狗子??,光槍,水扇,小水奶,暗狗,Cidd
+//Basar,Tywin,光鐮,暗兔,女僕,Krau
 void init_hero(hero_status &hero)
 {
-    if (hero_name == "寶馬")
+    if (hero_name == "Krau")
     {
         hero.atk = 839;
         hero.hp = 6405;
@@ -13,7 +13,7 @@ void init_hero(hero_status &hero)
         hero.crit = 15;
         hero.crit_dmg = 150;
         hero.dual_atk = 5;
-        hero.effective = 0;
+        hero.hit = 0;
         hero.resist = 18;
         hero.atk_pctg = 0;
         hero.hp_pctg = 0;
@@ -28,7 +28,7 @@ void init_hero(hero_status &hero)
         hero.crit = 15;
         hero.crit_dmg = 150;
         hero.dual_atk = 5;
-        hero.effective = 18;
+        hero.hit = 18;
         hero.resist = 0;
         hero.atk_pctg = 0;
         hero.hp_pctg = 0;
@@ -43,7 +43,7 @@ void init_hero(hero_status &hero)
         hero.crit = 27;
         hero.crit_dmg = 160;
         hero.dual_atk = 5;
-        hero.effective = 0;
+        hero.hit = 0;
         hero.resist = 0;
         hero.atk_pctg = 0;
         hero.hp_pctg = 0;
@@ -58,13 +58,13 @@ void init_hero(hero_status &hero)
         hero.crit = 27;
         hero.crit_dmg = 150;
         hero.dual_atk = 5;
-        hero.effective = 18;
+        hero.hit = 18;
         hero.resist = 0;
         hero.atk_pctg = 0;
         hero.hp_pctg = 0;
         hero.def_pctg = 0;
     }
-    else if (hero_name == "泰溫")
+    else if (hero_name == "Tywin")
     {
         hero.atk = 821;
         hero.hp = 6751;
@@ -73,13 +73,13 @@ void init_hero(hero_status &hero)
         hero.crit = 15;
         hero.crit_dmg = 150;
         hero.dual_atk = 5;
-        hero.effective = 18;
+        hero.hit = 18;
         hero.resist = 0;
         hero.atk_pctg = 0;
         hero.hp_pctg = 0;
         hero.def_pctg = 0;
     }
-    else if (hero_name == "巴塞爾")
+    else if (hero_name == "Basar")
     {
         hero.atk = 1316;
         hero.hp = 4777;
@@ -88,13 +88,13 @@ void init_hero(hero_status &hero)
         hero.crit = 15;
         hero.crit_dmg = 150;
         hero.dual_atk = 5;
-        hero.effective = 18;
+        hero.hit = 18;
         hero.resist = 0;
         hero.atk_pctg = 0;
         hero.hp_pctg = 0;
         hero.def_pctg = 0;
     }
-    else if (hero_name == "暗槍")
+    else if (hero_name == "Lorina")
     {
         hero.atk = 1144;
         hero.atk_pctg = 0;
@@ -105,11 +105,11 @@ void init_hero(hero_status &hero)
         hero.crit = 23;
         hero.crit_dmg = 150;
         hero.dual_atk = 5;
-        hero.effective = 0;
+        hero.hit = 0;
         hero.resist = 0;
         hero.spd = 101;
     }
-    else if (hero_name == "賽茲")
+    else if (hero_name == "水刺")
     {
         hero.atk = 1228;
         hero.atk_pctg = 0;
@@ -120,7 +120,7 @@ void init_hero(hero_status &hero)
         hero.crit = 23;
         hero.crit_dmg = 150;
         hero.dual_atk = 5;
-        hero.effective = 0;
+        hero.hit = 0;
         hero.resist = 0;
         hero.spd = 113;
     }
@@ -136,7 +136,7 @@ void init_hero(hero_status &hero)
         hero.crit = 15;
         hero.crit_dmg = 150;
         hero.dual_atk = 5;
-        hero.effective = 0;
+        hero.hit = 0;
         hero.resist = 0;
         hero.spd = 88;
     }
@@ -152,12 +152,12 @@ void init_hero(hero_status &hero)
         hero.crit = 35;
         hero.crit_dmg = 150;
         hero.dual_atk = 5;
-        hero.effective = 0;
+        hero.hit = 0;
         hero.resist = 0;
         hero.spd = 112;
     }
 
-    else if (hero_name == "露娜")
+    else if (hero_name == "Luna")
     {
         hero.atk = 1119;
         hero.atk_pctg = 0;
@@ -168,7 +168,7 @@ void init_hero(hero_status &hero)
         hero.crit = 15;
         hero.crit_dmg = 150;
         hero.dual_atk = 5;
-        hero.effective = 0;
+        hero.hit = 0;
         hero.resist = 0;
         hero.spd = 109;
     }
@@ -184,7 +184,7 @@ void init_hero(hero_status &hero)
         hero.crit = 23;
         hero.crit_dmg = 150;
         hero.dual_atk = 5;
-        hero.effective = 0;
+        hero.hit = 0;
         hero.resist = 0;
         hero.spd = 116;
     }
@@ -200,12 +200,12 @@ void init_hero(hero_status &hero)
         hero.crit = 15;
         hero.crit_dmg = 150;
         hero.dual_atk = 5;
-        hero.effective = 0;
+        hero.hit = 0;
         hero.resist = 0;
         hero.spd = 108;
     }
 
-    else if (hero_name == "蒂姬")
+    else if (hero_name == "Dizzy")
     {
         hero.atk = 1039;
         hero.atk_pctg = 0;
@@ -216,12 +216,12 @@ void init_hero(hero_status &hero)
         hero.crit = 15;
         hero.crit_dmg = 150;
         hero.dual_atk = 5;
-        hero.effective = 18;
+        hero.hit = 18;
         hero.resist = 18;
         hero.spd = 115;
     }
 
-    else if (hero_name == "木反")
+    else if (hero_name == "蘋果")
     {
         hero.atk = 1228;
         hero.atk_pctg = 0;
@@ -232,12 +232,12 @@ void init_hero(hero_status &hero)
         hero.crit = 23;
         hero.crit_dmg = 150;
         hero.dual_atk = 5;
-        hero.effective = 0;
+        hero.hit = 0;
         hero.resist = 0;
         hero.spd = 113;
     }
 
-    else if (hero_name == "伊賽麗亞")
+    else if (hero_name == "Iseria")
     {
         hero.atk = 1158;
         hero.atk_pctg = 0;
@@ -248,7 +248,7 @@ void init_hero(hero_status &hero)
         hero.crit = 23;
         hero.crit_dmg = 150;
         hero.dual_atk = 5;
-        hero.effective = 0;
+        hero.hit = 0;
         hero.resist = 0;
         hero.spd = 112;
     }
@@ -264,12 +264,12 @@ void init_hero(hero_status &hero)
         hero.crit = 23;
         hero.crit_dmg = 150;
         hero.dual_atk = 5;
-        hero.effective = 0;
+        hero.hit = 0;
         hero.resist = 0;
         hero.spd = 116;
     }
 
-    else if (hero_name == "木狼")
+    else if (hero_name == "木狗")
     {
         hero.atk = 812;
         hero.atk_pctg = 0;
@@ -280,7 +280,7 @@ void init_hero(hero_status &hero)
         hero.crit = 27;
         hero.crit_dmg = 150;
         hero.dual_atk = 5;
-        hero.effective = 12;
+        hero.hit = 12;
         hero.resist = 0;
         hero.spd = 106;
     }
@@ -296,12 +296,12 @@ void init_hero(hero_status &hero)
         hero.crit = 15;
         hero.crit_dmg = 150;
         hero.dual_atk = 5;
-        hero.effective = 30;
+        hero.hit = 30;
         hero.resist = 0;
         hero.spd = 115;
     }
 
-    else if (hero_name == "狗子")
+    else if (hero_name == "狗子??")
     {
         hero.atk = 796;
         hero.atk_pctg = 0;
@@ -312,7 +312,7 @@ void init_hero(hero_status &hero)
         hero.crit = 15;
         hero.crit_dmg = 150;
         hero.dual_atk = 5;
-        hero.effective = 0;
+        hero.hit = 0;
         hero.resist = 0;
         hero.spd = 104;
     }
@@ -326,7 +326,7 @@ void init_hero(hero_status &hero)
         hero.crit = 27;
         hero.crit_dmg = 150;
         hero.dual_atk = 5;
-        hero.effective = 0;
+        hero.hit = 0;
         hero.resist = 0;
         hero.atk_pctg = 0;
         hero.hp_pctg = 0;
@@ -342,7 +342,7 @@ void init_hero(hero_status &hero)
         hero.crit = 15;
         hero.crit_dmg = 150;
         hero.dual_atk = 5;
-        hero.effective = 18;
+        hero.hit = 18;
         hero.resist = 0;
         hero.atk_pctg = 0;
         hero.hp_pctg = 0;
@@ -358,7 +358,7 @@ void init_hero(hero_status &hero)
         hero.crit = 15;
         hero.crit_dmg = 150;
         hero.dual_atk = 5;
-        hero.effective = 0;
+        hero.hit = 0;
         hero.resist = 0;
         hero.atk_pctg = 0;
         hero.hp_pctg = 0;
@@ -374,14 +374,14 @@ void init_hero(hero_status &hero)
         hero.crit = 15;
         hero.crit_dmg = 150;
         hero.dual_atk = 5;
-        hero.effective = 0;
+        hero.hit = 0;
         hero.resist = 0;
         hero.atk_pctg = 0;
         hero.hp_pctg = 0;
         hero.def_pctg = 0;
     }
 
-    else if (hero_name == "席德")
+    else if (hero_name == "Cidd")
     {
         hero.atk = 1029;
         hero.hp = 5097;
@@ -390,7 +390,7 @@ void init_hero(hero_status &hero)
         hero.crit = 23;
         hero.crit_dmg = 150;
         hero.dual_atk = 5;
-        hero.effective = 0;
+        hero.hit = 0;
         hero.resist = 0;
         hero.atk_pctg = 0;
         hero.hp_pctg = 0;

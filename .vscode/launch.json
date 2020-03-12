@@ -10,9 +10,17 @@
             "request": "launch",
             "program": "${workspaceFolder}/main",
             "args": [
+                ////////////////////////////
+                // "load"
+                ////////////////////////////
                 "calculate",
-                "Lorina",
-                "攻擊"
+                "水扇",
+                "速度",
+                "攻擊",
+                "70",
+                "100",
+                "13000"
+                ////////////////////////////
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

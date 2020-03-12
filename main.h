@@ -9,10 +9,8 @@ using namespace std;
 class equipment
 {
 public:
-    string part;
-    string type;
-    //0=生命 1=防禦 2=攻擊 3=速度 4=暴擊 5=命中 6=破滅
-    //7=吸血 8=反擊 9=抵抗 10=夾攻 11=憤怒 12=免疫
+    string part; //部位
+    string suit; //0=生命 1=防禦 2=攻擊 3=速度 4=暴擊 5=命中 6=破滅 7=吸血 8=反擊 9=抵抗 10=夾攻 11=憤怒 12=免疫
     int atk;
     int atk_pctg;
     int hp;
@@ -21,7 +19,7 @@ public:
     int def_pctg;
     int crit;
     int crit_dmg;
-    int effective;
+    int hit;
     int resist;
     int spd;
 };
@@ -29,7 +27,7 @@ public:
 class hero_status
 {
 public:
-    vector<int> part_index;
+    vector<int> part_index; //穿的裝備是分別第幾件
     int atk;
     int atk_pctg;
     int hp;
@@ -39,15 +37,15 @@ public:
     int crit;
     int crit_dmg;
     int dual_atk;
-    int effective;
+    int hit;
     int resist;
     int spd;
 };
 
-class part
+class part //部位
 {
 public:
-    vector<string> type;
+    vector<string> type; //類型
     vector<int> atk;
     vector<int> atk_pctg;
     vector<int> hp;
@@ -56,7 +54,7 @@ public:
     vector<int> def_pctg;
     vector<int> crit;
     vector<int> crit_dmg;
-    vector<int> effective;
+    vector<int> hit;
     vector<int> resist;
     vector<int> spd;
     vector<string> used;
@@ -68,14 +66,10 @@ extern int need_hp;
 // extern string input_path;
 extern string output_path;
 extern string hero_name;
-extern string need_type;
+extern string need_suit;
 extern string sort_by;
 
-void run();
-// void input_new_equipment();
-// void load_database();
 void calculate();
 void init_hero(hero_status &);
-// void init_part(part &, part &, part &, part &, part &, part &);
 
 #endif

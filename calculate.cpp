@@ -4,7 +4,7 @@
 #include <algorithm> // sort
 #include <fstream>
 
-vector<int> type;
+vector<int> suit;
 part weapon, helmet, armor, necklace, ring, boots;
 
 void load(part &p, vector<string> word)
@@ -19,13 +19,13 @@ void load(part &p, vector<string> word)
     p.def_pctg.push_back(ct.str2int(word[8]));
     p.crit.push_back(ct.str2int(word[9]));
     p.crit_dmg.push_back(ct.str2int(word[10]));
-    p.effective.push_back(ct.str2int(word[11]));
+    p.hit.push_back(ct.str2int(word[11]));
     p.resist.push_back(ct.str2int(word[12]));
     p.spd.push_back(ct.str2int(word[13]));
     p.used.push_back(word[14]);
 }
 
-void init_part(part &weapon, part &helmet, part &armor, part &necklace, part &ring, part &boots)
+void init_equipment(part &weapon, part &helmet, part &armor, part &necklace, part &ring, part &boots)
 {
     fstream fs_w, fs_h, fs_a, fs_n, fs_r, fs_b;
     fs_w.open("./parts/weapon.txt", ios::in);
@@ -74,125 +74,126 @@ void init_part(part &weapon, part &helmet, part &armor, part &necklace, part &ri
     fs_b.close();
 }
 
-void cal_type(string s)
+void cal_suit(string s)
 {
     //0=生命 1=防禦 2=攻擊 3=速度 4=暴擊 5=命中 6=破滅
     //7=吸血 8=反擊 9=抵抗 10=夾攻 11=憤怒 12=免疫
     if (s == "生命")
-        type[0]++;
+        suit[0]++;
     else if (s == "防禦")
-        type[1]++;
+        suit[1]++;
     else if (s == "攻擊")
-        type[2]++;
+        suit[2]++;
     else if (s == "速度")
-        type[3]++;
+        suit[3]++;
     else if (s == "暴擊")
-        type[4]++;
+        suit[4]++;
     else if (s == "命中")
-        type[5]++;
+        suit[5]++;
     else if (s == "破滅")
-        type[6]++;
+        suit[6]++;
     else if (s == "吸血")
-        type[7]++;
+        suit[7]++;
     else if (s == "反擊")
-        type[8]++;
+        suit[8]++;
     else if (s == "抵抗")
-        type[9]++;
+        suit[9]++;
     else if (s == "夾攻")
-        type[10]++;
+        suit[10]++;
     else if (s == "憤怒")
-        type[11]++;
+        suit[11]++;
     else if (s == "免疫")
-        type[12]++;
+        suit[12]++;
 }
 
 bool filter(unsigned int w, unsigned int h, unsigned int a, unsigned int n, unsigned int r, unsigned int b)
 {
-    type.assign(13, 0);
-    cal_type(weapon.type[w]);
-    cal_type(helmet.type[h]);
-    cal_type(armor.type[a]);
-    cal_type(necklace.type[n]);
-    cal_type(ring.type[r]);
-    cal_type(boots.type[b]);
+    suit.assign(13, 0);
+    cal_suit(weapon.type[w]); //第w把類型
+    cal_suit(helmet.type[h]);
+    cal_suit(armor.type[a]);
+    cal_suit(necklace.type[n]);
+    cal_suit(ring.type[r]);
+    cal_suit(boots.type[b]);
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //0=生命 1=防禦 2=攻擊 3=速度 4=暴擊 5=命中 6=破滅
     //7=吸血 8=反擊 9=抵抗 10=夾攻 11=憤怒 12=免疫
-    if (need_type == "攻擊")
+    if (need_suit == "攻擊")
     {
-        if (type[2] >= 4)
+        if (suit[2] >= 4)
             return true; //1
         else
             return false; //0
     }
-    else if (need_type == "速度")
+    else if (need_suit == "速度")
     {
-        if (type[3] >= 4)
+        if (suit[3] >= 4)
             return true; //1
         else
             return false; //0
     }
-    else if (need_type == "速度免疫")
+    else if (need_suit == "速度免疫")
     {
-        if (type[3] == 4 && type[12] == 2)
+        if (suit[3] == 4 && suit[12] == 2)
             return true; //1
         else
             return false; //0
     }
-    else if (need_type == "破滅")
+    else if (need_suit == "破滅")
     {
-        if (type[6] >= 4)
+        if (suit[6] >= 4)
             return true; //1
         else
             return false; //0
     }
-    else if (need_type == "吸血")
+    else if (need_suit == "吸血")
     {
-        if (type[7] >= 4)
+        if (suit[7] >= 4)
             return true; //1
         else
             return false; //0
     }
-    else if (need_type == "反擊")
+    else if (need_suit == "反擊")
     {
-        if (type[8] >= 4)
+        if (suit[8] >= 4)
             return true; //1
         else
             return false; //0
     }
-    else if (need_type == "憤怒")
+    else if (need_suit == "憤怒")
     {
-        if (type[11] >= 4)
+        if (suit[11] >= 4)
             return true; //1
         else
             return false; //0
     }
     else
     {
-        return true; //0
+        cout << "不選擇套裝，繼續" << endl;
+        return true;
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void suit_effect(hero_status &hero)
 {
-    if (type[0] >= 2)
-        hero.hp_pctg += (type[0] / 2 * 15);
-    if (type[1] >= 2)
-        hero.def_pctg += (type[1] / 2 * 15);
-    if (type[2] >= 4)
-        hero.atk_pctg += (type[2] / 4 * 35);
-    if (type[3] >= 4)
+    if (suit[0] >= 2)
+        hero.hp_pctg += (suit[0] / 2 * 15);
+    if (suit[1] >= 2)
+        hero.def_pctg += (suit[1] / 2 * 15);
+    if (suit[2] >= 4)
+        hero.atk_pctg += (suit[2] / 4 * 35);
+    if (suit[3] >= 4)
         hero.spd *= 1.25;
-    if (type[4] >= 2)
-        hero.crit += (type[4] / 2 * 12);
-    if (type[5] >= 2)
-        hero.effective += (type[5] / 2 * 20);
-    if (type[6] >= 4)
-        hero.crit_dmg += (type[6] / 4 * 40);
-    if (type[9] >= 2)
-        hero.resist += (type[9] / 2 * 20);
-    if (type[10] >= 2)
-        hero.dual_atk += (type[10] / 2 * 4);
+    if (suit[4] >= 2)
+        hero.crit += (suit[4] / 2 * 12);
+    if (suit[5] >= 2)
+        hero.hit += (suit[5] / 2 * 20);
+    if (suit[6] >= 4)
+        hero.crit_dmg += (suit[6] / 4 * 40);
+    if (suit[9] >= 2)
+        hero.resist += (suit[9] / 2 * 20);
+    if (suit[10] >= 2)
+        hero.dual_atk += (suit[10] / 2 * 4);
 }
 
 bool hero_with_suit(hero_status &hero, unsigned int w, unsigned int h, unsigned int a, unsigned int n, unsigned int r, unsigned int b)
@@ -208,28 +209,29 @@ bool hero_with_suit(hero_status &hero, unsigned int w, unsigned int h, unsigned 
     hero.hp_pctg += weapon.hp_pctg[w] + helmet.hp_pctg[h] + armor.hp_pctg[a] + necklace.hp_pctg[n] + ring.hp_pctg[r] + boots.hp_pctg[b];
     hero.hp *= 0.01 * hero.hp_pctg + 1;
     hero.hp += weapon.hp[w] + helmet.hp[h] + armor.hp[a] + necklace.hp[n] + ring.hp[r] + boots.hp[b];
+    if (hero.hp < need_hp)
+        return false;
 
     hero.crit += weapon.crit[w] + helmet.crit[h] + armor.crit[a] + necklace.crit[n] + ring.crit[r] + boots.crit[b];
-    hero.spd += weapon.spd[w] + helmet.spd[h] + armor.spd[a] + necklace.spd[n] + ring.spd[r] + boots.spd[b];
-
-    if (hero.hp >= need_hp && hero.crit >= need_crit && hero.spd >= need_spd)
-    {
-        hero.atk_pctg += weapon.atk_pctg[w] + helmet.atk_pctg[h] + armor.atk_pctg[a] + necklace.atk_pctg[n] + ring.atk_pctg[r] + boots.atk_pctg[b];
-        hero.atk *= 0.01 * hero.atk_pctg + 1;
-        hero.atk += weapon.atk[w] + helmet.atk[h] + armor.atk[a] + necklace.atk[n] + ring.atk[r] + boots.atk[b];
-        // hero.atk *= 1.5; //attack buff
-
-        hero.def_pctg += weapon.def_pctg[w] + helmet.def_pctg[h] + armor.def_pctg[a] + necklace.def_pctg[n] + ring.def_pctg[r] + boots.def_pctg[b];
-        hero.def *= 0.01 * hero.def_pctg + 1;
-        hero.def += weapon.def[w] + helmet.def[h] + armor.def[a] + necklace.def[n] + ring.def[r] + boots.def[b];
-
-        hero.crit_dmg += weapon.crit_dmg[w] + helmet.crit_dmg[h] + armor.crit_dmg[a] + necklace.crit_dmg[n] + ring.crit_dmg[r] + boots.crit_dmg[b];
-        hero.effective += weapon.effective[w] + helmet.effective[h] + armor.effective[a] + necklace.effective[n] + ring.effective[r] + boots.effective[b];
-        hero.resist += weapon.resist[w] + helmet.resist[h] + armor.resist[a] + necklace.resist[n] + ring.resist[r] + boots.resist[b];
-        return true;
-    }
-    else
+    if (hero.crit < need_crit)
         return false;
+    hero.spd += weapon.spd[w] + helmet.spd[h] + armor.spd[a] + necklace.spd[n] + ring.spd[r] + boots.spd[b];
+    if (hero.spd < need_spd)
+        return false;
+
+    hero.atk_pctg += weapon.atk_pctg[w] + helmet.atk_pctg[h] + armor.atk_pctg[a] + necklace.atk_pctg[n] + ring.atk_pctg[r] + boots.atk_pctg[b];
+    hero.atk *= 0.01 * hero.atk_pctg + 1;
+    hero.atk += weapon.atk[w] + helmet.atk[h] + armor.atk[a] + necklace.atk[n] + ring.atk[r] + boots.atk[b];
+    // hero.atk *= 1.5; //attack buff
+
+    hero.def_pctg += weapon.def_pctg[w] + helmet.def_pctg[h] + armor.def_pctg[a] + necklace.def_pctg[n] + ring.def_pctg[r] + boots.def_pctg[b];
+    hero.def *= 0.01 * hero.def_pctg + 1;
+    hero.def += weapon.def[w] + helmet.def[h] + armor.def[a] + necklace.def[n] + ring.def[r] + boots.def[b];
+
+    hero.crit_dmg += weapon.crit_dmg[w] + helmet.crit_dmg[h] + armor.crit_dmg[a] + necklace.crit_dmg[n] + ring.crit_dmg[r] + boots.crit_dmg[b];
+    hero.hit += weapon.hit[w] + helmet.hit[h] + armor.hit[a] + necklace.hit[n] + ring.hit[r] + boots.hit[b];
+    hero.resist += weapon.resist[w] + helmet.resist[h] + armor.resist[a] + necklace.resist[n] + ring.resist[r] + boots.resist[b];
+    return true;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 bool cmp_hp(hero_status const &a, hero_status const &b)
@@ -249,7 +251,7 @@ bool cmp_spd(hero_status const &a, hero_status const &b)
 
 bool cmp_eff(hero_status const &a, hero_status const &b)
 {
-    return a.effective > b.effective;
+    return a.hit > b.hit;
 };
 
 bool cmp_res(hero_status const &a, hero_status const &b)
@@ -259,10 +261,10 @@ bool cmp_res(hero_status const &a, hero_status const &b)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void calculate()
 {
-    hero_status hero;
-    init_part(weapon, helmet, armor, necklace, ring, boots);
-    vector<hero_status> comp;
-    for (unsigned int w = 0; w < weapon.type.size(); w++)
+    hero_status hero;                                             //一組解
+    init_equipment(weapon, helmet, armor, necklace, ring, boots); //初始化部位
+    vector<hero_status> comp;                                     //存入全部可能解
+    for (unsigned int w = 0; w < weapon.type.size(); w++)         //weapon隨便一個成員大小當作數量
     {
         if (weapon.used[w] == "used")
             continue;
@@ -317,7 +319,12 @@ void calculate()
                                         else if (sort_by == "抵抗")
                                         {
                                             sort(comp.begin(), comp.end(), cmp_res);
-                                        }                                        
+                                        }
+                                        else
+                                        {
+                                            cout << "新增排序選項，結束" << endl;
+                                            exit(1);
+                                        }
                                         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                         comp.pop_back();
                                     }
@@ -350,7 +357,7 @@ void calculate()
            << " 防禦 = " << comp[i].def
            << " 暴擊 = " << comp[i].crit
            << " 暴傷 = " << comp[i].crit_dmg
-           << " 效果命中 = " << comp[i].effective
+           << " 效果命中 = " << comp[i].hit
            << " 效果抵抗 = " << comp[i].resist
            << " 夾攻 = " << comp[i].dual_atk
            << " 速度 = " << comp[i].spd
