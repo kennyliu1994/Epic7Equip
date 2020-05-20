@@ -169,7 +169,7 @@ bool filter(unsigned int w, unsigned int h, unsigned int a, unsigned int n, unsi
     }
     else
     {
-        cout << "不選擇套裝，繼續" << endl;
+        // cout << "不選擇套裝，繼續" << endl;
         return true;
     }
 }
@@ -223,12 +223,14 @@ bool hero_with_suit(hero_status &hero, unsigned int w, unsigned int h, unsigned 
     hero.atk *= 0.01 * hero.atk_pctg + 1;
     hero.atk += weapon.atk[w] + helmet.atk[h] + armor.atk[a] + necklace.atk[n] + ring.atk[r] + boots.atk[b];
     // hero.atk *= 1.5; //attack buff
+    // hero.atk *= 1.3; //Luna
 
     hero.def_pctg += weapon.def_pctg[w] + helmet.def_pctg[h] + armor.def_pctg[a] + necklace.def_pctg[n] + ring.def_pctg[r] + boots.def_pctg[b];
     hero.def *= 0.01 * hero.def_pctg + 1;
     hero.def += weapon.def[w] + helmet.def[h] + armor.def[a] + necklace.def[n] + ring.def[r] + boots.def[b];
 
     hero.crit_dmg += weapon.crit_dmg[w] + helmet.crit_dmg[h] + armor.crit_dmg[a] + necklace.crit_dmg[n] + ring.crit_dmg[r] + boots.crit_dmg[b];
+    // hero.crit_dmg += 22.5; //ML_Ravi
     hero.hit += weapon.hit[w] + helmet.hit[h] + armor.hit[a] + necklace.hit[n] + ring.hit[r] + boots.hit[b];
     hero.resist += weapon.resist[w] + helmet.resist[h] + armor.resist[a] + necklace.resist[n] + ring.resist[r] + boots.resist[b];
     return true;
@@ -242,6 +244,16 @@ bool cmp_hp(hero_status const &a, hero_status const &b)
 bool cmp_atk_dmg(hero_status const &a, hero_status const &b)
 {
     return a.atk * a.crit_dmg > b.atk * b.crit_dmg;
+};
+
+bool cmp_dmg(hero_status const &a, hero_status const &b)
+{
+    return a.crit_dmg > b.crit_dmg;
+};
+
+bool ML_Ravi(hero_status const &a, hero_status const &b)
+{
+    return (a.atk * 0.95 + a.hp * 0.12) * a.crit_dmg > (b.atk * 0.95 + b.hp * 0.12) * b.crit_dmg;
 };
 
 bool cmp_spd(hero_status const &a, hero_status const &b)
@@ -311,6 +323,14 @@ void calculate()
                                         else if (sort_by == "攻擊暴傷")
                                         {
                                             sort(comp.begin(), comp.end(), cmp_atk_dmg);
+                                        }
+                                        else if (sort_by == "暴傷")
+                                        {
+                                            sort(comp.begin(), comp.end(), cmp_dmg);
+                                        }
+                                        else if (sort_by == "ML_Ravi")
+                                        {
+                                            sort(comp.begin(), comp.end(), ML_Ravi);
                                         }
                                         else if (sort_by == "命中")
                                         {

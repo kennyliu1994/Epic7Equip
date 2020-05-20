@@ -1,10 +1,55 @@
 #include "main.h"
 
 //Lorina,水刺,水奶,暗拉茲,Luna,木刺,偶像,Dizzy,蘋果,Iseria,暗刺,木狗,木扇,狗子??,光槍,水扇,小水奶,暗狗,Cidd
-//Basar,Tywin,光鐮,暗兔,女僕,Krau
+//Basar,Tywin,光鐮,暗兔,女僕,Krau,ML_Ravi,查爾斯,Diene
 void init_hero(hero_status &hero)
 {
-    if (hero_name == "Krau")
+    if (hero_name == "Diene")
+    {
+        hero.atk = 649;
+        hero.hp = 5254;
+        hero.spd = 103;
+        hero.def = 694;
+        hero.crit = 15;
+        hero.crit_dmg = 150;
+        hero.dual_atk = 5;
+        hero.hit = 0;
+        hero.resist = 18;
+        hero.atk_pctg = 0;
+        hero.hp_pctg = 0;
+        hero.def_pctg = 0;
+    }
+    else if (hero_name == "查爾斯")
+    {
+        hero.atk = 957;
+        hero.hp = 6148;
+        hero.spd = 109;
+        hero.def = 634;
+        hero.crit = 27;
+        hero.crit_dmg = 150;
+        hero.dual_atk = 5;
+        hero.hit = 0;
+        hero.resist = 0;
+        hero.atk_pctg = 0;
+        hero.hp_pctg = 0;
+        hero.def_pctg = 0;
+    }
+    else if (hero_name == "ML_Ravi")
+    {
+        hero.atk = 975;
+        hero.hp = 7054;
+        hero.spd = 106;
+        hero.def = 652;
+        hero.crit = 45;
+        hero.crit_dmg = 150;
+        hero.dual_atk = 5;
+        hero.hit = 0;
+        hero.resist = 0;
+        hero.atk_pctg = 0;
+        hero.hp_pctg = 0;
+        hero.def_pctg = 0;
+    }
+    else if (hero_name == "Krau")
     {
         hero.atk = 839;
         hero.hp = 6405;
